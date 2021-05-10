@@ -1,0 +1,16 @@
+body {
+    background-image: url("../assets/images/bg-login.jpg");
+    background-repeat:no-repeat;
+    background-size: 100% cover;
+}
+
+div.transbox {
+    margin-top: 10%;
+    background-color:#4bc;
+    opacity: 0.9;
+}
+
+div.transbox form {
+    color: #000000;
+    opacity: 1;
+}
