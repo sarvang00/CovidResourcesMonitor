@@ -1,0 +1,7 @@
+.nav-link.active {
+    background-color: #06c;
+}
+
+.nav-item.dropdown {
+    left: -60px;
+}
