@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/non-admin-add-modify.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <!-- FontAwesome Icons CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- DataTable CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+    <!-- Page Title -->
+    <title>Resources Dashboard | COVID Resource Monitor</title>
+</head>
+
+<body>
+    <!-- Define the whole page in a container -->
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-expand-md navbar-light container-fluid"
+        style="background-color: #ebebe9;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <h4>COVID Resource Monitor</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">
+                            <h5><i class="bi bi-card-checklist"></i> Dashboard</h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="#">
+                            <h5><i class="bi bi-node-plus"></i> Add/Modify Leads</h5>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> User's Name
+                        </a>
+                        <ul class="dropdown-menu container" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Box -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-2 col-lg-2">
+                <!-- Division for sidebar -->
+                <div class="d-flex align-items-start sidebar-content">
+                    <div class="nav flex-column nav-pills h5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                            aria-selected="true">
+                            <i class="bi bi-plus-circle"></i> Add Leads
+                        </button>
+                        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                            aria-selected="false">
+                            <i class="bi bi-gear"></i> Modify leads
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-12">
+                <!-- Content Division -->
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <!-- Add lead details -->
+                        <h2><i class="bi bi-plus-circle"></i> <u>Add Leads</u> </h2>
+                        <div class="container-fluid">
+                            <form action="#" class="add-lead-form row">
+                                <!-- Lead Contact Info Section -->
+                                <h5>Contact Details Section</h5>
+                                <hr>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Name</span>
+                                        <input type="text" required class="form-control" placeholder="Name/Org. of Lead" aria-label="Lead Source" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Contact No.</span>
+                                        <input type="text" required class="form-control" placeholder="+91xxxxxxxxxx" aria-label="Number" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupSelect01">Select State</label>
+                                        <select class="form-select" id="inputGroupSelect01" required>
+                                          <option selected>State</option>
+                                          <option value="Maharashtra">Maharashtra</option>
+                                          <option value="Delhi">Delhi</option>
+                                          <option value="Tamil Nadu">Tamil Nadu</option>
+                                        </select>
+                                      </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupSelect01">Select Region</label>
+                                        <select class="form-select" id="inputGroupSelect01" required>
+                                          <option selected>Region</option>
+                                          <option value="Mumbai">Mumbai</option>
+                                          <option value="Delhi-NCR">Delhi-NCR</option>
+                                          <option value="Chennai">Chennai</option>
+                                        </select>
+                                      </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Full Address</span>
+                                        <textarea required class="form-control" aria-label="Full Address"></textarea>
+                                      </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt"></i></span>
+                                        <input type="text" required class="form-control" placeholder="Google Maps URL" aria-label="Lead Source" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                        <input type="email" required class="form-control" placeholder="Email ID" aria-label="Lead Source" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 row">
+                                    <b class="col-md-3 col-sm-12 col-lg-3">Type of Lead: </b>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                                        <label class="btn btn-outline-success" for="success-outlined">Public (Government)</label>    
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="options-outlined" id="info-outlined" autocomplete="off">
+                                        <label class="btn btn-outline-info" for="info-outlined">Private (For Profit)</label>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="options-outlined" id="dark-outlined" autocomplete="off">
+                                        <label class="btn btn-outline-dark" for="dark-outlined">NGO / Others (Non-Profit)</label>
+                                    </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <hr>
+
+                                <!-- Adding resources -->
+                                <h5>Category-1 Section</h5>
+                                <hr>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-1 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-2 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-3 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-4 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <h5>Category-2 Section</h5>
+                                <hr>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-1 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-2 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-3 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <a href="#"><button type="submit" class="btn-submit"><i class="bi bi-node-plus"></i> Add Lead Data</button></a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+
+                        <h2><i class="bi bi-gear"></i> <u>Modify leads</u> </h2>
+
+                        <div id="searchbar">
+                            <form action="" class="row  mt-5">
+                                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                                    <select class="form-select" aria-label="set-state">
+                                        <option selected>Select State</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                    </select>
+                                </div>
+                                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                                    <select class="form-select" aria-label="set-region">
+                                        <option selected>Select Region</option>
+                                        <option value="Delhi-NCR">Delhi-NCR</option>
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="Chennai">Chennai</option>
+                                    </select>
+                                </div>
+                                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                                    <select class="form-select" aria-label="select-category">
+                                        <option selected>Select Category</option>
+                                        <option value="Beds">Beds</option>
+                                        <option value="Medicine">Medicine</option>
+                                        <option value="Oxygen">Oxygen</option>
+                                    </select>
+                                </div>
+                                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                                    <select class="form-select" aria-label="select-category">
+                                        <option selected>Select Type</option>
+                                        <option value="Private">Private</option>
+                                        <option value="Public (Govt.)">Public (Govt.)</option>
+                                        <option value="NGO/Community-run">NGO/Community-run</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-lg-3"></div>
+                                <div class="col-md-1 col-lg-1 col-sm-12 align-right">
+                                    <button class="btn btn-outline-success">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                        <hr class="content-divider">
+                        <div id="dashboard" class="mt-4">
+                            <table id="dashboard-table" class="display border rounded" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name/Org.</th>
+                                        <th>Location</th>
+                                        <th>Regular Beds</th>
+                                        <th>Beds with Oxygen</th>
+                                        <th>ICU Beds</th>
+                                        <th>Lead Type</th>
+                                        <th>Comments</th>
+                                        <th>Modify?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> 
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                                        </td>
+                                        <td>Mumbai <b>(Maharashtra)</b></td>
+                                        <td>5</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                        <td>Public</td>
+                                        <td>Can arrange for more Ocy beds in a week</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                Modify
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a></td>
+                                        <td>Delhi-NCR <b>(Delhi)</b></td>
+                                        <td>2</td>
+                                        <td>0</td>
+                                        <td>3</td>
+                                        <td>Public</td>
+                                        <td>Running low on Oxygen</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                Modify
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                                        </td>
+                                        <td>Mumbai <b>(Maharashtra)</b></td>
+                                        <td>5</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                        <td>NGO</td>
+                                        <td>Can arrange for more Ocy beds in a week</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                Modify
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a></td>
+                                        <td>Delhi-NCR <b>(Delhi)</b></td>
+                                        <td>2</td>
+                                        <td>0</td>
+                                        <td>3</td>
+                                        <td>Private</td>
+                                        <td>Running low on Oxygen</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                Modify
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                                        </td>
+                                        <td>Chennai <b>(Tamil Nadu)</b></td>
+                                        <td>5</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                        <td>Private</td>
+                                        <td>Can arrange for more Ocy beds in a week</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                Modify
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a></td>
+                                        <td>Chennai <b>(Tamil Nadu)</b></td>
+                                        <td>2</td>
+                                        <td>0</td>
+                                        <td>3</td>
+                                        <td>Public</td>
+                                        <td>Running low on Oxygen</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                Modify
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <section class="container-fluid fixed-bottom" id="footer">
+        <div class="row footer">
+            <div class="col-lg-12 text-center">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> Covid Resource Monitor
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal-1: Viewing Lead Data -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Lead Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Lead Name</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert lead name here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Contact Number</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert contact no. here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Email</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert email here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Address</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert address here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Google Map link</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert GMaps URL here
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal-2:Updating Lead Data -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form action="#">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Updating Lead Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form action="#" class="add-lead-form row">
+                                <!-- Lead Contact Info Section -->
+                                <h5>Contact Details Section</h5>
+                                <hr>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Name</span>
+                                        <input type="text" required class="form-control" placeholder="Name/Org. of Lead" aria-label="Lead Source" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Contact No.</span>
+                                        <input type="text" required class="form-control" placeholder="+91xxxxxxxxxx" aria-label="Number" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupSelect01">Select State</label>
+                                        <select class="form-select" id="inputGroupSelect01" required>
+                                          <option selected>State</option>
+                                          <option value="Maharashtra">Maharashtra</option>
+                                          <option value="Delhi">Delhi</option>
+                                          <option value="Tamil Nadu">Tamil Nadu</option>
+                                        </select>
+                                      </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupSelect01">Select Region</label>
+                                        <select class="form-select" id="inputGroupSelect01" required>
+                                          <option selected>Region</option>
+                                          <option value="Mumbai">Mumbai</option>
+                                          <option value="Delhi-NCR">Delhi-NCR</option>
+                                          <option value="Chennai">Chennai</option>
+                                        </select>
+                                      </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Full Address</span>
+                                        <textarea required class="form-control" aria-label="Full Address"></textarea>
+                                      </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt"></i></span>
+                                        <input type="text" required class="form-control" placeholder="Google Maps URL" aria-label="Lead Source" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                        <input type="email" required class="form-control" placeholder="Email ID" aria-label="Lead Source" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 row">
+                                    <b class="col-md-3 col-sm-12 col-lg-3">Type of Lead: </b>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                                        <label class="btn btn-outline-success" for="success-outlined">Public (Government)</label>    
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="options-outlined" id="info-outlined" autocomplete="off">
+                                        <label class="btn btn-outline-info" for="info-outlined">Private (For Profit)</label>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="options-outlined" id="dark-outlined" autocomplete="off">
+                                        <label class="btn btn-outline-dark" for="dark-outlined">NGO / Others (Non-Profit)</label>
+                                    </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <hr>
+
+                                <!-- Adding resources -->
+                                <h5>Category-1 Section</h5>
+                                <hr>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-1 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-2 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-3 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-4 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <h5>Category-2 Section</h5>
+                                <hr>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-1 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-2 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-3 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Sub-category-3 Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <hr>
+                            <p> <em>Updating data here will update data everywhere.</em> </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger">Understood, update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <!-- JavaScript Bundle with Popper ; If fails, try to put in BODY -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- DataTable JS  -->
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <!-- JS File -->
+    <script src="js/non-admin-add-modify.js"></script>
+
+</body>
+
+</html>
