@@ -2,6 +2,9 @@
     background-color: #06c;
 }
 
-.nav-item.dropdown {
-    left: -60px;
-}
+.dropdown-left-manual {
+    right: 0;
+    left: auto;
+    padding-left: 1px;
+    padding-right: 1px;
+  }
