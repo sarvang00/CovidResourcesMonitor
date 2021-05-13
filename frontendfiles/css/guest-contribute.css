@@ -1,15 +1,3 @@
-.nav-link.active {
-  background-color: #06c;
-}
-
-hr.content-divider {
-  color: #06c;
-}
-
-.sidebar-content {
-  border-right: 1px solid #06c;
-}
-
 .add-lead-form {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -21,8 +9,7 @@ hr.content-divider {
   width: 100%;
   color: #fff;
   background-color: rgb(34, 143, 252);
-  border: 1px solid black;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 10px;
 }
 
