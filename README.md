@@ -11,9 +11,11 @@
 3. Database: PostgresSql
 
 ## Dev Progress
+#### Frontend Development Complete
+* Frontend files stored at: ./frontendfiles
 
 #### Current Stage
-* Make frontned templates using vanilla HTML5, CSS3, JS and Bootstrap
+* Completed making frontned templates using vanilla HTML5, CSS3, JS and Bootstrap
 
 #### Next Stage
-* Unify the code to set according to Angular Framework.
+* Make backend using Django
