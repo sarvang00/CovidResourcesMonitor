@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/guest-dashboard.css">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -16,6 +16,12 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <!-- DataTable CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <!-- Side bar css -->
+    <link rel="stylesheet" href="css/sidebar.css">
+    <!-- Navbar css -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <!-- Custom CSS for page -->
+    <link rel="stylesheet" href="css/guest-dashboard.css">
 
     <!-- Page Title -->
     <title>Resources Dashboard | COVID Resource Monitor</title>
@@ -25,8 +31,7 @@
     <!-- Define the whole page in a container -->
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-expand-md navbar-light container-fluid"
-        style="background-color: #ebebe9;">
+    <nav id="custom-content-navbar" class="navbar navbar-expand-lg navbar-expand-md navbar-dark container-fluid">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <h4>COVID Resource Monitor</h4>
@@ -121,6 +126,7 @@
                                 <th>Regular Beds</th>
                                 <th>Beds with Oxygen</th>
                                 <th>ICU Beds</th>
+                                <th>Total Beds (Vacancy)</th>
                                 <th>Lead Type</th>
                                 <th>Comments</th>
                             </tr>
@@ -134,6 +140,7 @@
                                 <td>5</td>
                                 <td>2</td>
                                 <td>1</td>
+                                <td>120 (Vacancy: 8)</td>
                                 <td>Public</td>
                                 <td>Can arrange for more Ocy beds in a week</td>
                             </tr>
@@ -144,6 +151,7 @@
                                 <td>2</td>
                                 <td>0</td>
                                 <td>3</td>
+                                <td>120 (Vacancy: 8)</td>
                                 <td>Public</td>
                                 <td>Running low on Oxygen</td>
                             </tr>
@@ -155,6 +163,7 @@
                                 <td>5</td>
                                 <td>2</td>
                                 <td>1</td>
+                                <td>120 (Vacancy: 8)</td>
                                 <td>NGO</td>
                                 <td>Can arrange for more Ocy beds in a week</td>
                             </tr>
@@ -165,6 +174,7 @@
                                 <td>2</td>
                                 <td>0</td>
                                 <td>3</td>
+                                <td>120 (Vacancy: 8)</td>
                                 <td>Private</td>
                                 <td>Running low on Oxygen</td>
                             </tr>
@@ -176,6 +186,7 @@
                                 <td>5</td>
                                 <td>2</td>
                                 <td>1</td>
+                                <td>120 (Vacancy: 8)</td>
                                 <td>Private</td>
                                 <td>Can arrange for more Ocy beds in a week</td>
                             </tr>
@@ -186,6 +197,7 @@
                                 <td>2</td>
                                 <td>0</td>
                                 <td>3</td>
+                                <td>120 (Vacancy: 8)</td>
                                 <td>Public</td>
                                 <td>Running low on Oxygen</td>
                             </tr>
