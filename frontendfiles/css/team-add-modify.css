@@ -21,3 +21,7 @@ hr.content-divider {
   color: #fff;
   background-color: #06c;
 }
+
+#basic-addon1{
+  overflow:visible;
+}
