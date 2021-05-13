@@ -1,0 +1,15 @@
+.nav-pills .nav-link.active {
+  background-color: inherit;
+  color: inherit;
+}
+
+div.d-flex.align-items-start.sidebar-content {
+  background-color: #00695c;
+  color: #fff;
+}
+
+div.d-flex.align-items-start.sidebar-content:hover {
+  color: #00695c;
+  background-color: #fff;
+  border: 2px solid #00695c;
+}
