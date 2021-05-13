@@ -1,13 +1,5 @@
-.nav-link.active {
-  background-color: #06c;
-}
-
 hr.content-divider {
   color: #06c;
-}
-
-.sidebar-content {
-  border-right: 1px solid #06c;
 }
 
 .add-lead-form {
@@ -21,16 +13,11 @@ hr.content-divider {
   width: 100%;
   color: #fff;
   background-color: rgb(34, 143, 252);
-  border: 1px solid black;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 10px;
 }
 
 .btn-submit:hover {
   color: #fff;
   background-color: #06c;
-}
-
-.input-group p {
-  font-weight: bold;
 }
