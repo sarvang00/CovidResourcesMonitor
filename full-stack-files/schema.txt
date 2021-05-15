@@ -36,6 +36,6 @@ Comments - STRING
 Last Updated - DATETIME
 
 Proposed Availability:
-Lead - LEAD (FK)
+Lead - PROPOSED LEAD (FK)
 Resource - Resources (FK)
 Count - INT
