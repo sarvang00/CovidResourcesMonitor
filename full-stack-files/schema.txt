@@ -21,6 +21,6 @@ Availability:
 Lead - LEAD (FK)
 Resource - Resources (FK)
 Count - INT
-Added/Modified by - USER
+Added/Modified by - String --> will need to add validation here for guest
 Last Updated - DATETIME
 Verification Status - BOOL
