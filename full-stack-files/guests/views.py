@@ -6,3 +6,6 @@ def index(request):
 
 def contribute(request):
     return render(request, 'guests/guest-contribute.html')
+
+def login(request):
+    return render(request, 'guests/login.html')

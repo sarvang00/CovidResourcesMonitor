@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,9 +21,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <!-- Navbar CSS -->
-    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <!-- Custom CSS for page -->
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     
     <title>Login Page | COVID Resource Monitor</title>
 </head>
@@ -77,14 +79,7 @@
     </div>
 
     <!-- Footer -->
-    <section class="container-fluid fixed-bottom" id="footer">
-        <div class="row footer">
-            <div class="col-lg-12 text-center">
-                &copy;
-                <script>document.write(new Date().getFullYear())</script> Covid Resource Monitor
-            </div>
-        </div>
-    </section>
+    {% import 'partials/_footer.html' %}
 
 </body>
 
