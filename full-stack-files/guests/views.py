@@ -2,4 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse('<h1>Hello Guests</h1>')
+    return render(request, 'guests/guest-dashboard.html')
+
+def contribute(request):
+    return render(request, 'guests/guest-contribute.html')

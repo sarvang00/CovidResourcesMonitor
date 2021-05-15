@@ -21,10 +21,10 @@
     <!-- Navbar css -->
     <link rel="stylesheet" href="css/navbar.css">
     <!-- Custom CSS for page -->
-    <link rel="stylesheet" href="css/guest-contribute.css">
+    <link rel="stylesheet" href="css/team-add-modify.css">
 
     <!-- Page Title -->
-    <title>Contribute Leads | COVID Resource Monitor</title>
+    <title>Add/Modify Resources | COVID Resource Monitor</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
     <nav id="custom-content-navbar" class="navbar navbar-expand-lg navbar-expand-md navbar-dark container-fluid">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <h4> <i class="fab fa-medrt"></i>COVID Resource Monitor</h4>
+                <h4><i class="fab fa-medrt"></i> COVID Resource Monitor</h4>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">
-                            <h5><i class="bi bi-node-plus"></i> Contribute Leads</h5>
+                            <h5><i class="bi bi-node-plus"></i> Add/Modify Leads</h5>
                         </a>
                     </li>
                 </ul>
@@ -57,10 +57,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i> Guest User or Visitor
+                            <i class="bi bi-person-circle"></i> User's Name
                         </a>
                         <ul class="dropdown-menu container" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log In</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -70,29 +70,31 @@
 
     <!-- Content Box -->
     <div class="container-fluid mt-5">
-        <div class="row">
-            <div class="col-md-2 col-lg-2">
-                <!-- Division for sidebar -->
-                <div class="d-flex align-items-start sidebar-content">
-                    <div class="nav flex-column nav-pills h5" id="v-pills-tab" role="tablist"
-                        aria-orientation="vertical">
-                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
-                            aria-selected="true">
-                            <i class="bi bi-plus-circle"></i> Add Leads
-                        </button>
+        {% block content %} {% endblock %}
+    </div>
 
-                    </div>
-                </div>
+    <!-- Footer -->
+    <section class="container-fluid fixed-bottom" id="footer">
+        <div class="row footer">
+            <div class="col-lg-12 text-center">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> Covid Resource Monitor
             </div>
-            <div class="col-md-8 col-lg-8 col-sm-12">
-                <!-- Content Division -->
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                        aria-labelledby="v-pills-home-tab">
-                        <!-- Add lead details -->
-                        <h2><i class="bi bi-plus-circle"></i> <u>Add Leads</u> </h2>
-                        <div class="container-fluid mb-5">
+        </div>
+    </section>
+
+    <!-- Modal-1:Updating Lead Data -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form action="#">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Updating Lead Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
                             <form action="#" class="add-lead-form row">
                                 <!-- Lead Contact Info Section -->
                                 <h5>Contact Details Section</h5>
@@ -182,30 +184,30 @@
                                 <!-- Adding resources -->
                                 <h5>Category-1 Section</h5>
                                 <hr>
-                                <div class="col-md-6 col-lg-4 col-sm-12">
+                                <div class="col-md-6 col-lg-4 col-sm-12 ">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Sub-category-1 Count</span>
+                                        <span class="input-group-text col-lg-7 col-md-7 col-sm-12" id="basic-addon1">Sub-category-1<br> Count</span>
                                         <input type="number" min="0" class="form-control" placeholder="#"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Sub-category-2 Count</span>
+                                        <span class="input-group-text col-lg-7 col-md-7 col-sm-12" id="basic-addon1">Sub-category-2<br> Count</span>
                                         <input type="number" min="0" class="form-control" placeholder="#"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Sub-category-3 Count</span>
+                                        <span class="input-group-text col-lg-7 col-md-7 col-sm-12" id="basic-addon1">Sub-category-3<br>Count</span>
                                         <input type="number" min="0" class="form-control" placeholder="#"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Sub-category-4 Count</span>
+                                        <span class="input-group-text col-lg-7 col-md-7 col-sm-12" id="basic-addon1">Sub-category-4<br> Count</span>
                                         <input type="number" min="0" class="form-control" placeholder="#"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
@@ -216,54 +218,261 @@
                                 <hr>
                                 <div class="col-md-6 col-lg-4 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Sub-category-1 Count</span>
+                                        <span class="input-group-text col-lg-7 col-md-7 col-sm-12" id="basic-addon1">Sub-category-1<br> Count</span>
                                         <input type="number" min="0" class="form-control" placeholder="#"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Sub-category-2 Count</span>
+                                        <span class="input-group-text col-lg-7 col-md-7 col-sm-12" id="basic-addon1">Sub-category-2<br> Count</span>
                                         <input type="number" min="0" class="form-control" placeholder="#"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1">Sub-category-3 Count</span>
+                                        <span class="input-group-text col-lg-7 col-md-7 col-sm-12" id="basic-addon1">Sub-category-3<br>Count</span>
                                         <input type="number" min="0" class="form-control" placeholder="#"
                                             aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
+                                <div class="col-sm-12 col-md-4 col-lg-4"></div>
                                 <hr>
-
-                                <div class="col-sm-12 col-md-4 col-lg-4"></div>
-                                <div class="col-sm-12 col-md-4 col-lg-4">
-                                    <a href="#"><button type="submit" class="btn-submit"><i class="bi bi-node-plus"></i>
-                                            Contribute Lead Data</button></a>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col-lg-4"></div>
-
-                            </form>
+                                <p> <em>Updating data here will update data everywhere.</em> </p>
                         </div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger">Understood, update</button>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-2 col-lg-2"></div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <section class="container-fluid fixed-bottom" id="footer">
-        <div class="row footer">
-            <div class="col-lg-12 text-center">
-                &copy;
-                <script>document.write(new Date().getFullYear())</script> Covid Resource Monitor
+    <!-- Modal-2:Approve Lead Data -->
+    <div class="modal fade" id="approveModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+
+                <!-- approve lead details -->
+                <div class="container-fluid">
+
+                    <form action="#" class="add-lead-form row">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Approving Lead Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <!-- Lead Contact Info Section -->
+                        <h5>Contact Details Section</h5>
+                        <hr>
+
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="input-group ">
+                                <p class="p-1">Name: </p>
+                                <span class="rounded p-1">Name of the Organization</span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Contact No.</p>
+                                <span class="rounded p-1">+91xxxxxxxxxx</span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">State:</p>
+                                <span class="rounded p-1">Maharashtra</span>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Region:</p>
+                                <span class="rounded p-1">Mumbai</span>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Full Address:</p>
+                                <span class="rounded p-1"> Chhatrapati Shivaji Maharaj International Airport, Terminal
+                                    2, Level 3, Mumbai, Maharashtra 400099</span>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="mt-3"></div>
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">On Google Maps:</p>
+                                <a href="https://www.google.com/maps/dir//terminal+2+mumbai+airport+address/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3be7c842cee36319:0x158a27c50fd02347?sa=X&ved=2ahUKEwjHnpCM_MPwAhWx7XMBHWQbAAcQ9RcwIHoECEUQBQ"
+                                    class="overflow-hidden p-1">click Here to Open</a>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Email:</p>
+                                <span class="rounded p-1">abcd@gmail.com</span>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Type of Lead:</p>
+                                <span class="rounded p-1 text-secondary">Public (Government)</span>
+                                <span class="rounded p-1 text-info">Private (For Profit)</span>
+                                <span class="rounded p-1 text-dark">NGO / Others (Non-Profit)</span>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="mt-3"></div>
+                        <hr>
+
+                        <!-- approve resources -->
+                        <h5>Category-1 Section</h5>
+                        <hr>
+                        <div class="col-md-4 col-lg-3 col-sm-12">
+                            <div class="input-group">
+                                <p class="font-weight-bold p-1">Sub-category-1 Count:</p>
+                                <span class="rounded p-1">10</span>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Sub-category-2 Count:</p>
+                                <span class="rounded p-1">10</span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Sub-category-3 Count:</p>
+                                <span class="rounded p-1">10</span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold p-1">Sub-category-4 Count:</p>
+                                <span class="rounded p-1">10</span>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <h5>Category-2 Section</h5>
+                        <hr>
+                        <div class="col-md-4 col-lg-3 col-sm-12">
+                            <div class="input-group">
+                                <p class="font-weight-bold p-1">Sub-category-1 Count:</p>
+                                <span class="rounded p-1">10</span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-12">
+                            <div class="input-group ">
+                                <p class="font-weight-bold ">Sub-category-2 Count:</p>
+                                <span class="rounded ">10</span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 col-sm-12">
+                            <div class="input-group">
+                                <p class="font-weight-bold ">Sub-category-3 Count:</p>
+                                <span class="rounded ">10</span>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <p> <em>Adding data here will Add data everywhere.</em> </p>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Verified, Approve</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-
+    <!-- Modal-3: Data info -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Lead Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Lead Name</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert lead name here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Contact Number</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert contact no. here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Email</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert email here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Address</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert address here
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            <b>Google Map link</b>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6">
+                            Insert GMaps URL here
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- JavaScript Bundle with Popper ; If fails, try to put in BODY -->
@@ -277,7 +486,7 @@
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
     <!-- JS File -->
-    <script src="js/guest-contribute.js"></script>
+    <script src="js/team-add-modify.js"></script>
 
 </body>
 

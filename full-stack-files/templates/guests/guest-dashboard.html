@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2 col-lg-2">
+        <!-- Division for sidebar -->
+    </div>
+    <div class="col-md-8 col-lg-8 col-sm-12">
+        <h2><i class="bi bi-card-checklist"></i> <u>Resources Dashboard</u></h2>
+        <div id="searchbar">
+            <form action="" class="row  mt-5">
+                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                    <select class="form-select" aria-label="set-state">
+                        <option selected>Select State</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                    </select>
+                </div>
+                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                    <select class="form-select" aria-label="set-region">
+                        <option selected>Select Region</option>
+                        <option value="Delhi-NCR">Delhi-NCR</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Chennai">Chennai</option>
+                    </select>
+                </div>
+                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                    <select class="form-select" aria-label="select-category">
+                        <option selected>Select Category</option>
+                        <option value="Beds">Beds</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="Oxygen">Oxygen</option>
+                    </select>
+                </div>
+                <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                    <select class="form-select" aria-label="select-category">
+                        <option selected>Select Type</option>
+                        <option value="Private">Private</option>
+                        <option value="Public (Govt.)">Public (Govt.)</option>
+                        <option value="NGO/Community-run">NGO/Community-run</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-lg-3"></div>
+                <div class="col-md-1 col-lg-1 col-sm-12 align-right">
+                    <button class="btn btn-outline-success">Search</button>
+                </div>
+            </form>
+        </div>
+        <hr class="content-divider">
+        <div id="dashboard" class="mt-4">
+            <table id="dashboard-table" class="display border rounded" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name/Org.</th>
+                        <th>Location</th>
+                        <th>Regular Beds</th>
+                        <th>Beds with Oxygen</th>
+                        <th>ICU Beds</th>
+                        <th>Total Beds (Vacancy)</th>
+                        <th>Lead Type</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                        </td>
+                        <td>Mumbai <b>(Maharashtra)</b></td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>120 (Vacancy: 8)</td>
+                        <td>Public</td>
+                        <td>Can arrange for more Ocy beds in a week</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
+                        </td>
+                        <td>Delhi-NCR <b>(Delhi)</b></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>120 (Vacancy: 8)</td>
+                        <td>Public</td>
+                        <td>Running low on Oxygen</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                        </td>
+                        <td>Mumbai <b>(Maharashtra)</b></td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>120 (Vacancy: 8)</td>
+                        <td>NGO</td>
+                        <td>Can arrange for more Ocy beds in a week</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
+                        </td>
+                        <td>Delhi-NCR <b>(Delhi)</b></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>120 (Vacancy: 8)</td>
+                        <td>Private</td>
+                        <td>Running low on Oxygen</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                        </td>
+                        <td>Chennai <b>(Tamil Nadu)</b></td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>120 (Vacancy: 8)</td>
+                        <td>Private</td>
+                        <td>Can arrange for more Ocy beds in a week</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
+                        </td>
+                        <td>Chennai <b>(Tamil Nadu)</b></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>120 (Vacancy: 8)</td>
+                        <td>Public</td>
+                        <td>Running low on Oxygen</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-2 col-lg-2"></div>
+</div>
+
+{% endblock %}
