@@ -1,0 +1,53 @@
+body {
+  background-image: url("../assets/images/bg-login.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% cover;
+}
+
+div.transbox {
+  margin-top: 10%;
+  opacity: 0.9;
+}
+
+div.transbox form {
+  color: #000000;
+  opacity: 1;
+}
+
+.login-form {
+  padding: 9%;
+  background: #06c;
+  border-radius: 15px;
+}
+
+.login-form h3 {
+  text-align: center;
+  margin-bottom: 12%;
+  color: #fff;
+}
+
+.btnSubmit {
+  font-weight: 600;
+  width: 100%;
+  color: #06c;
+  background-color: #fff;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+}
+
+.btnSubmit:hover {
+  color: #06c;
+  background-color: #fff;
+}
+
+.btnForgetPwd {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btnForgetPwd:hover {
+  color: white;
+  text-decoration: underline;
+}
