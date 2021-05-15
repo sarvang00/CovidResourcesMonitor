@@ -22,8 +22,16 @@
     <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
     <!-- Navbar css -->
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-    <!-- Custom CSS for page -->
-    <link rel="stylesheet" href="{% static 'css/team-add-modify.css' %}">
+    
+    {% if 'team' in request.path %}
+    <!-- Custom CSS for team pages -->
+    <link rel="stylesheet" href="{% static 'css/team.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}">
+    {% else %}
+    <!-- Custom CSS for guest pages -->
+    <link rel="stylesheet" href="{% static 'css/guest.css' %}">
+    {% endif %}
+    
 
     <!-- Page Title -->
     <title>Add/Modify Resources | COVID Resource Monitor</title>

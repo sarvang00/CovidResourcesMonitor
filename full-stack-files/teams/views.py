@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def dashboard(request):
+def teamDashboard(request):
     return render(request, 'teams/team-dashboard.html')
 
 def addLeads(request):

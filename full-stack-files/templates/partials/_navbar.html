@@ -10,16 +10,55 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                {% if 'team' in request.path %}
+                <!-- Team User -->
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">
+                    <a 
+                    {% if 'team/teamdashboard' in request.path %}
+                    class="nav-link active"
+                    {% else %}
+                    class="nav-link"
+                    {% endif %}
+                    aria-current="page" href="{% url 'teamdashboard' %}">
                         <h5><i class="bi bi-card-checklist"></i> Dashboard</h5>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a 
+                    {% if 'team/addleads' in request.path %}
+                    class="nav-link active"
+                    {% else %}
+                    class="nav-link"
+                    {% endif %}
+                    aria-current="page" href="{% url 'addleads' %}">
                         <h5><i class="bi bi-node-plus"></i> Add/Modify Leads</h5>
                     </a>
                 </li>
+                {% else %}
+                <!-- Not a team user -->
+                <li class="nav-item">
+                    <a 
+                    {% if 'dashboard' in request.path %}
+                    class="nav-link active"
+                    {% else %}
+                    class="nav-link"
+                    {% endif %}
+                    aria-current="page" href="{% url 'dashboard' %}">
+                        <h5><i class="bi bi-card-checklist"></i> Dashboard</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a 
+                    {% if 'contribute' in request.path %}
+                    class="nav-link active"
+                    {% else %}
+                    class="nav-link"
+                    {% endif %} 
+                    aria-current="page" href="{% url 'contribute' %}">
+                        <h5><i class="bi bi-node-plus"></i> Contribute Leads</h5>
+                    </a>
+                </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
