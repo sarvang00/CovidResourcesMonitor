@@ -34,7 +34,17 @@
     
 
     <!-- Page Title -->
+    {% if 'dashboard' in request.path %}
+    <title>Resources Dashboard | COVID Resource Monitor</title>
+    {% elif 'team/addleads' in request.path%}
     <title>Add/Modify Resources | COVID Resource Monitor</title>
+    {% elif 'contribute' in request.path %}
+    <title>Contribute Leads | COVID Resource Monitor</title>
+    {% elif 'admincontrols' in request.path %}
+    <title>Admin Panel | COVID Resource Monitor</title>
+    {% else %}
+    <title>COVID Resource Monitor</title>
+    {% endif %}
 </head>
 
 <body>
