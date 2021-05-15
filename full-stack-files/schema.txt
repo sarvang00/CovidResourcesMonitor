@@ -1,0 +1,26 @@
+Location:
+State - STRING
+Region - STRING
+
+Resources:
+Category - STRING
+Sub Category - STRING
+
+Lead:
+Name(source) - STRING
+Contact Number - STRING
+Location - LOCATION(Foreign Key)
+Full Address - STRING(TEXT)
+GMaps URL - STRING
+Email Id - STRING(EMAIL)
+Type - STRING
+Source - STRING
+Comments - STRING
+
+Availability:
+Lead - LEAD (FK)
+Resource - Resources (FK)
+Count - INT
+Added/Modified by - USER
+Last Updated - DATETIME
+Verification Status - BOOL
