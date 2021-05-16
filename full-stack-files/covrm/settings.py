@@ -125,3 +125,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media folder settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {messages.DEBUG: 'debug',
+                messages.INFO: 'info',
+                messages.SUCCESS: 'success',
+                messages.WARNING: 'warning',
+                messages.ERROR: 'danger',}

@@ -96,7 +96,8 @@
                                     <br>
                                     <div class="input-group">
                                         <span class="input-group-text">Comments</span>
-                                        <textarea required class="form-control" aria-label="Comments" placeholder="Any additional comments"></textarea>
+                                        <textarea required class="form-control" aria-label="Comments"
+                                            placeholder="Any additional comments"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -536,62 +537,64 @@
     </div>
 </div>
 
-
-
 <!-- Model-6: Add User -->
-   
-    <div class="modal fade" id="exampleModalAddUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content px-5 py-3">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <br>
-                </div>
+<div class="modal fade" id="exampleModalAddUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content px-5 py-3">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <br>
+            </div>
+            <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
                     <br>
                     <div class="row">
-                         <div class="form-group col-md-4 col-sm-12">
-                           <label for="first_name">First Name</label>
-                           <input type="text" name="first_name" class="form-control" placeholder="Eg.: John" required>
-                         </div>
-                         <div class="form-group col-md-4 col-sm-12">
-                           <label for="last_name">Last Name</label>
-                           <input type="text" name="last_name" class="form-control" placeholder="Eg.: Doe" required>
-                         </div>
-                    
-                         <div class="form-group col-md-4 col-sm-12">
-                           <label for="email">Email</label>
-                           <input type="email" name="email" class="form-control" placeholder="Eg.: abc@provider.com" required>
-                         </div>
-                     </div>
-                     <br>
-                     <div class="row">
-                         <div class="form-group col-md-4 col-sm-12">
-                           <label for="username">Username</label>
-                           <input type="text" name="username" class="form-control" placeholder="Username (Eg: flyingFalcon007)" required>
-                         </div>
-                   
-                         <div class="form-group col-md-4 col-sm-12">
-                           <label for="password2">Password</label>
-                           <input type="password" name="password" class="form-control" placeholder="Your password" required>
-                         </div>
-                         <div class="form-group col-md-4 col-sm-12">
-                           <label for="password">Confirm Password</label>
-                           <input type="password" name="password2" class="form-control" placeholder="Your password"required>
-                         </div>
-                     </div>
-                     
-                     <br>
-                 </div>
-             </form>
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" class="form-control" placeholder="Eg.: John" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" placeholder="Eg.: Doe" required>
+                        </div>
 
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Eg.: abc@provider.com"
+                                required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" class="form-control"
+                                placeholder="Username (Eg: flyingFalcon007)" required>
+                        </div>
+
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="password2">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Your password"
+                                required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="password">Confirm Password</label>
+                            <input type="password" name="password2" class="form-control" placeholder="Your password"
+                                required>
+                        </div>
+                    </div>
+
+                    <br>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Register</button>
+                    <button type="submit" class="btn btn-success">Register</button>
                 </div>
-            </div>
-
+            </form>
         </div>
+
     </div>
+</div>
