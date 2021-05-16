@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
+from .models import Availability, Lead, Resource, Location
+
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
 
@@ -18,7 +20,19 @@ def addLeads(request):
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
 def adminControls(request):
-    return render(request, 'teams/admin-dashboard.html')
+    resources = Resource.objects.all()
+    categories = list()
+    
+    for resource in resources:
+        categories.append(resource.category)
+
+    categories = list(set(categories))
+
+    context_categories = {
+        'categories' : categories
+    }
+
+    return render(request, 'teams/admin-dashboard.html', context=context_categories)
 
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
@@ -61,3 +75,49 @@ def logout(request):
         auth.logout(request)
         messages.success(request, 'You are now logged out')
         return redirect('dashboard')
+
+@cache_control(no_cache=True, must_revalidate=True)
+@login_required(login_url='/login/')
+def addCategory(request):
+    if request.method == 'POST':
+        category = request.POST['category']
+        subcategory = request.POST['subcategory']
+
+        if Resource.objects.filter(category=category).exists():
+            messages.error(request, 'This category already exists!')
+            return redirect('admincontrols')
+        else:
+            resource = Resource(category=category, sub_category=subcategory)
+            resource.save()
+            messages.success(request, 'Added a new category')
+            return redirect('admincontrols')
+    else:
+        return redirect('admincontrols')
+
+@cache_control(no_cache=True, must_revalidate=True)
+@login_required(login_url='/login/')
+def addSubCategory(request):
+    if request.method == 'POST':
+        category = request.POST['category']
+        subcategory = request.POST['subcategory']
+
+        resources_exist = Resource.objects.filter(category=category).exists()
+        resources = Resource.objects.filter(category=category).all()
+
+        if resources_exist:
+            for resource in resources:
+                if resource.sub_category == subcategory:
+                    messages.error(request, 'This sub-category already exists in this category!')
+                    return redirect('admincontrols')
+
+            resource = Resource(category=category, sub_category=subcategory)
+            resource.save()
+            messages.success(request, 'Added a new sub-category') 
+            return redirect('admincontrols')
+        
+        else:
+            messages.error(request, 'The category does not exist!')
+            return redirect('admincontrols')
+
+    else:
+        return redirect('admincontrols')
