@@ -12,7 +12,9 @@
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                     {% if 'team' in request.path %}
-                        {% if not user.is_superuser %}
+                        {% if user.is_superuser %}
+                            <!-- Super User -->
+                        {% else %}
                             <!-- Team User -->
                             <li class="nav-item">
                                 <a 
@@ -38,8 +40,6 @@
                                 </a>
                             </li>
                         {% endif %}
-                    {% else %}
-                        <p>We may have a problem with authenticating your access!!!</p>
                     {% endif %}
                 {% else %}
                     <!-- Not a team user, guest access -->
