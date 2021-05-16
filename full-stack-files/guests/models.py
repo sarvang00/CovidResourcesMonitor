@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from teams.models import Location, Resources
+from teams.models import Location, Resource
 
 class ProposedLead(models.Model):
     lead_name = models.CharField(max_length=100)
@@ -16,6 +16,6 @@ class ProposedLead(models.Model):
 
 class ProposedAvailability(models.Model):
     lead = models.ForeignKey(ProposedLead, on_delete=models.CASCADE, related_name='lead')
-    proposed_resource_type = models.ForeignKey(Resources, on_delete=models.DO_NOTHING, related_name='proposed_resource_type')
+    proposed_resource_type = models.ForeignKey(Resource, on_delete=models.DO_NOTHING, related_name='proposed_resource_type')
     available_count = models.IntegerField(default=0)
     

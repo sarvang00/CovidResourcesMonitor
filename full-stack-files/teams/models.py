@@ -6,7 +6,7 @@ class Location(models.Model):
     state = models.CharField(max_length=100)
     region = models.CharField(max_length=100)
 
-class Resources(models.Model):
+class Resource(models.Model):
     category = models.CharField(max_length=100)
     sub_category = models.CharField(max_length=100)
 
@@ -25,6 +25,6 @@ class Lead(models.Model):
 
 class Availability(models.Model):
     lead = models.ForeignKey(Lead, on_delete=models.CASCADE, related_name='lead')
-    resource_type = models.ForeignKey(Resources, on_delete=models.DO_NOTHING, related_name='resource_type')
+    resource_type = models.ForeignKey(Resource, on_delete=models.DO_NOTHING, related_name='resource_type')
     available_count = models.IntegerField(default=0)
     
