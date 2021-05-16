@@ -1,6 +1,6 @@
-
 {% extends 'base.html' %}
 {% block content %}
+{% if user.is_authenticated %}
     <!-- Content Box -->
     <div class="container-fluid mt-5">
         <div class="row">
@@ -141,6 +141,6 @@
             <div class="col-md-2 col-lg-2"></div>
         </div>
     </div>
-
-    {% endblock %}
+{% endif %}
+{% endblock %}
    

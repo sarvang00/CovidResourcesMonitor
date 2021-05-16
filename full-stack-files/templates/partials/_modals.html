@@ -1,4 +1,62 @@
-<!-- Modal-1:Updating Lead Data -->
+<!-- Modal-1: Data info -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lead Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Lead Name</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        Insert lead name here
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Contact Number</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        Insert contact no. here
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Email</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        Insert email here
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Address</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        Insert address here
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Google Map link</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        Insert GMaps URL here
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+<!-- Modal-2:Updating Lead Data -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -181,7 +239,7 @@
     </div>
 </div>
 
-<!-- Modal-2:Approve Lead Data -->
+<!-- Modal-3:Approve Lead Data -->
 <div class="modal fade" id="approveModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -355,62 +413,7 @@
     </div>
 </div>
 
-<!-- Modal-3: Data info -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Lead Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        <b>Lead Name</b>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        Insert lead name here
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        <b>Contact Number</b>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        Insert contact no. here
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        <b>Email</b>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        Insert email here
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        <b>Address</b>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        Insert address here
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        <b>Google Map link</b>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-md-6">
-                        Insert GMaps URL here
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+{% if user.is_superuser %}
 
 <!-- Modal-4: Add Category-->
 <div class="modal fade" id="exampleModalCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -598,3 +601,7 @@
 
     </div>
 </div>
+
+{% endif %}
+
+{% endif %}
