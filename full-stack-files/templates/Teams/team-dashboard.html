@@ -56,84 +56,35 @@
                             <tr>
                                 <th>Name/Org.</th>
                                 <th>Location</th>
-                                <th>Regular Beds</th>
-                                <th>Beds with Oxygen</th>
-                                <th>ICU Beds</th>
-                                <th>Total Beds (Vacancy)</th>
+                                {% for sub_category in sub_categories %}
+                                <th>{{ sub_category }}</th>
+                                {% endfor %}
                                 <th>Lead Type</th>
                                 <th>Comments</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% if leads %}
+                            {% for lead in leads %}
                             <tr>
                                 <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{lead.lead_name}}</a>
                                 </td>
-                                <td>Mumbai <b>(Maharashtra)</b></td>
-                                <td>5</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>120 (Vacancy: 8)</td>
+                                <td>{{lead.location.region}} <b>({{lead.location.state}})</b></td>
+                                {% for availability in availabilies %}
+                                <td>{{availability.available_count}}</td>
+                                {% endfor %}
+                                {% if lead.lead_type == "public" %}
                                 <td>Public</td>
-                                <td>Can arrange for more Ocy beds in a week</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
-                                </td>
-                                <td>Delhi-NCR <b>(Delhi)</b></td>
-                                <td>2</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>120 (Vacancy: 8)</td>
-                                <td>Public</td>
-                                <td>Running low on Oxygen</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
-                                </td>
-                                <td>Mumbai <b>(Maharashtra)</b></td>
-                                <td>5</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>120 (Vacancy: 8)</td>
-                                <td>NGO</td>
-                                <td>Can arrange for more Ocy beds in a week</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
-                                </td>
-                                <td>Delhi-NCR <b>(Delhi)</b></td>
-                                <td>2</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>120 (Vacancy: 8)</td>
+                                {% elif lead.lead_type == "private" %}
                                 <td>Private</td>
-                                <td>Running low on Oxygen</td>
+                                {% else %}
+                                <td>NGO / Others (Non-Profit)</td>
+                                {% endif %}
+                                <td>{{ lead.comments }}</td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
-                                </td>
-                                <td>Chennai <b>(Tamil Nadu)</b></td>
-                                <td>5</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>120 (Vacancy: 8)</td>
-                                <td>Private</td>
-                                <td>Can arrange for more Ocy beds in a week</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
-                                </td>
-                                <td>Chennai <b>(Tamil Nadu)</b></td>
-                                <td>2</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>120 (Vacancy: 8)</td>
-                                <td>Public</td>
-                                <td>Running low on Oxygen</td>
-                            </tr>
+                            {% endfor %}
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>

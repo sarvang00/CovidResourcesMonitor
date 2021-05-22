@@ -12,7 +12,58 @@ from datetime import datetime
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
 def teamDashboard(request):
-    return render(request, 'teams/team-dashboard.html')
+    if request.method == "POST":
+        context = dict()
+    else:
+        # Filtering all locations
+        locations = Location.objects.all()
+        
+        # Filtering resources and category
+        resources = Resource.objects.all()
+        
+        categories = list()
+
+        for resource in resources:
+            categories.append(resource.category)
+        
+        categories = list(set(categories))     
+
+        resources = Resource.objects.filter(category=categories[0]).all()
+
+        sub_cats = list()
+
+        for resource in resources:
+            sub_cats.append(resource.sub_category)
+        
+        sub_cats = list(set(sub_cats))
+
+        # Filtering lead ids
+        location_ids = list()
+        for location in locations:
+            location_ids.append(location.id)
+
+        leads = Lead.objects.filter(location__id__in=location_ids)
+        lead_ids = list()
+        for lead in leads:
+            lead_ids.append(lead.id)
+
+        # Filtering resource ids
+        resource_ids = list()
+        for resource in resources:
+            resource_ids.append(resource.id)
+
+        # Availabilities
+        availabilties = Availability.objects.filter(lead__id__in=lead_ids).filter(resource_type__id__in=resource_ids)
+        
+        context= {
+            'locations' : locations,
+            'resources': resources,
+            'sub_categories': sub_cats,
+            'leads': leads,
+            'availabilies': availabilties
+        }
+
+    return render(request, 'teams/team-dashboard.html', context=context)
 
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
