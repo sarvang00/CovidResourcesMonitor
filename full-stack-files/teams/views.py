@@ -7,6 +7,8 @@ from .models import Availability, Lead, Resource, Location
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
 
+from datetime import datetime
+
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
 def teamDashboard(request):
@@ -15,7 +17,75 @@ def teamDashboard(request):
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
 def addLeads(request):
-    return render(request, 'teams/team-add-modify.html')
+    # Filtering locations and states lists
+    locations = Location.objects.all()
+    states = list()
+    
+    for location in locations:
+        states.append(location.state)
+    
+    states = list(set(states))
+
+    # Filtering resources and category
+    resources = Resource.objects.all()
+    categories = list()
+
+    for resource in resources:
+        categories.append(resource.category)
+    
+    categories = list(set(categories))
+
+    context= {
+        'states': states,
+        'locations' : locations,
+        'categories': categories,
+        'resources': resources
+    }
+
+    return render(request, 'teams/team-add-modify.html', context=context)
+
+@login_required(login_url='/login/')
+def addVerifiedLead(request):
+    if request.method == "POST":
+        resources = Resource.objects.all()
+        resources_count = dict()
+
+        lead_name = request.POST['lead_name']
+        contact_num = request.POST['contact_num']
+        selectedState = request.POST['selectedState']
+        selectedRegion = request.POST['selectedRegion']
+        full_address = request.POST['full_address']
+        gmaps_url = request.POST['gmaps_url']
+        lead_email = request.POST['lead_email']
+        lead_type = request.POST['lead_type']
+        lead_comments = request.POST['lead_comments']
+
+        for resource in resources:
+            resource_id = str(resource.id)
+            resources_count[resource_id] = request.POST[resource_id]
+
+        if Lead.objects.filter(lead_name=lead_name, contact_num=contact_num, email=lead_email).exists():
+            messages.error(request, "Data with same lead, number and email id already exists.")
+            return redirect('addleads')
+        else:
+            # First, we add the lead
+            selected_location = Location.objects.filter(state=selectedState, region=selectedRegion).all()[0]
+            lead = Lead(lead_name=lead_name, contact_num=contact_num, location=selected_location, full_address=full_address, gmaps_url=gmaps_url, email=lead_email, lead_type=lead_type, source=True, verified_by = request.user, comments=lead_comments, last_updated=datetime.now())
+            lead.save()
+
+            # Now we add the data and use the added lead for reference
+            lead_for_data = Lead.objects.filter(lead_name=lead_name, contact_num=contact_num, location=selected_location, full_address=full_address, gmaps_url=gmaps_url, email=lead_email, lead_type=lead_type, source=True, verified_by = request.user).all()[0]
+            for res_id, count_value in resources_count.items():
+                res_id = int(res_id)
+                count_value = int(count_value)
+                resource_type = Resource.objects.filter(id=res_id).all()[0]
+                availability = Availability(lead=lead_for_data, resource_type=resource_type, available_count=count_value)
+                availability.save()
+            
+            # Finally we acknowledge and redirect
+            messages.success(request, "Lead data add request added.")
+            return redirect('addleads')
+
 
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
