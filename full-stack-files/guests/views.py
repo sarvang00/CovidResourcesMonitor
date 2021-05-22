@@ -37,6 +37,7 @@ def contribute(request):
 
         if ProposedLead.objects.filter(lead_name=lead_name, contact_num=contact_num, email=lead_email).exists():
             messages.error(request, "Data with same lead, number and email id already exists.")
+            return redirect('contribute')
         else:
             # First, we add the lead
             selected_location = Location.objects.filter(state=selectedState, region=selectedRegion).all()[0]
