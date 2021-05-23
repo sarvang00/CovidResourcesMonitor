@@ -76,13 +76,7 @@
                                 <td>{{availability.available_count}}</td>
                                 {% endif %}
                                 {% endfor %}
-                                {% if lead.lead_type == "public" %}
-                                <td>Public</td>
-                                {% elif lead.lead_type == "private" %}
-                                <td>Private</td>
-                                {% else %}
-                                <td>NGO / Others (Non-Profit)</td>
-                                {% endif %}
+                                <td>{{lead.lead_type.type}}</td>
                                 <td>{{ lead.comments }}</td>
                             </tr>
                             {% endfor %}
