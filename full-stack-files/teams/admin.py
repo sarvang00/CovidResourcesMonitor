@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Location, Resource, Lead, Availability
+from .models import LeadType, Location, Resource, Lead, Availability
 
 class LeadAdmin(admin.ModelAdmin):
     list_display = ('id', 'lead_name', 'contact_num', 'location', 'email', 'lead_type')
@@ -28,7 +28,13 @@ class LocationAdmin(admin.ModelAdmin):
     search_fields = ('state', 'region')
     list_per_page = 25
 
+class LeadTypeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type')
+    search_fields = ('type', )
+    list_per_page = 25
+
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Resource, ResourceAdmin)
+admin.site.register(LeadType, LeadTypeAdmin)
 admin.site.register(Lead, LeadAdmin)
 admin.site.register(Availability, AvailabilityAdmin)
