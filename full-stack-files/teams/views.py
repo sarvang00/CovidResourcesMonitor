@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
-from .models import Availability, Lead, Resource, Location
+from .models import Availability, Lead, LeadType, Resource, Location
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
@@ -37,6 +37,14 @@ def teamDashboard(request):
         
         sub_cats = list(set(sub_cats))
 
+        # Filtering states
+        states = list()
+    
+        for location in locations:
+            states.append(location.state)
+        
+        states = list(set(states))
+
         # Filtering lead ids
         location_ids = list()
         for location in locations:
@@ -54,13 +62,19 @@ def teamDashboard(request):
 
         # Availabilities
         availabilties = Availability.objects.filter(lead__id__in=lead_ids).filter(resource_type__id__in=resource_ids)
+
+        # Lead types
+        lead_types = LeadType.objects.all()
         
         context= {
             'locations' : locations,
             'resources': resources,
             'sub_categories': sub_cats,
             'leads': leads,
-            'availabilies': availabilties
+            'availabilies': availabilties,
+            'states': states,
+            'categories': categories,
+            'lead_types': lead_types
         }
 
     return render(request, 'teams/team-dashboard.html', context=context)
@@ -110,6 +124,8 @@ def addVerifiedLead(request):
         lead_email = request.POST['lead_email']
         lead_type = request.POST['lead_type']
         lead_comments = request.POST['lead_comments']
+
+        lead_type = LeadType.objects.filter(type=lead_type).all()[0]
 
         for resource in resources:
             resource_id = str(resource.id)

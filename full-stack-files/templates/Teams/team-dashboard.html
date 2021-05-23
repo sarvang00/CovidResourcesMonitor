@@ -10,37 +10,36 @@
             <div class="col-md-8 col-lg-8 col-sm-12">
                 <h2><i class="bi bi-card-checklist"></i> <u>Resources Dashboard</u></h2>
                 <div id="searchbar">
-                    <form action="" class="row  mt-5">
+                    <form action="{% url 'teamdashboard' %}" method="POST" class="row  mt-5">
                         <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                            <select class="form-select" aria-label="set-state">
-                                <option selected>Select State</option>
-                                <option value="Delhi">Delhi</option>
-                                <option value="Maharashtra">Maharashtra</option>
-                                <option value="Tamil Nadu">Tamil Nadu</option>
+                            <select class="form-select" aria-label="set-state" name="selectedState" id="stateSelect">
+                                <option value="all" selected>Select State</option>
+                                {% for state in states %}
+                                <option value="{{state}}">{{state}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                            <select class="form-select" aria-label="set-region">
-                                <option selected>Select Region</option>
-                                <option value="Delhi-NCR">Delhi-NCR</option>
-                                <option value="Mumbai">Mumbai</option>
-                                <option value="Chennai">Chennai</option>
+                            <select class="form-select" aria-label="set-region" name="selectedRegion" id="regionSelect">
+                                <!-- <option value="all" selected>Select Region</option> -->
+                                {% for location in locations %}
+                                <option class="{{location.state}}" value="{{location.region}}">{{location.region}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                            <select class="form-select" aria-label="select-category">
-                                <option selected>Select Category</option>
-                                <option value="Beds">Beds</option>
-                                <option value="Medicine">Medicine</option>
-                                <option value="Oxygen">Oxygen</option>
+                            <select class="form-select" aria-label="select-category" name="selectCategory">
+                                {% for category in categories %}
+                                <option value="{{category}}">{{category}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                            <select class="form-select" aria-label="select-category">
-                                <option selected>Select Type</option>
-                                <option value="Private">Private</option>
-                                <option value="Public (Govt.)">Public (Govt.)</option>
-                                <option value="NGO/Community-run">NGO/Community-run</option>
+                            <select class="form-select" aria-label="select-category" name="selectLeadType">
+                                <option value="all" selected>Select Type</option>
+                                {% for lead_type in lead_types %}
+                                <option value="{{lead_type.type}}">{{lead_type.type}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="col-md-3 col-lg-3"></div>

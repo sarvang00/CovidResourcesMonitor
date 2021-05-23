@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
-from teams.models import Location, Resource
+from teams.models import Location, Resource, LeadType
 from .models import ProposedAvailability, ProposedLead
 from datetime import datetime
 
@@ -30,6 +30,8 @@ def contribute(request):
         lead_email = request.POST['lead_email']
         lead_type = request.POST['lead_type']
         lead_comments = request.POST['lead_comments']
+
+        lead_type = LeadType.objects.filter(type=lead_type).all()[0]
 
         for resource in resources:
             resource_id = str(resource.id)
