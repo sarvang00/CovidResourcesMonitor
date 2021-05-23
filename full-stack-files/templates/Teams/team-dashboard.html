@@ -72,7 +72,9 @@
                                 </td>
                                 <td>{{lead.location.region}} <b>({{lead.location.state}})</b></td>
                                 {% for availability in availabilies %}
+                                {% if availability.lead == lead %}
                                 <td>{{availability.available_count}}</td>
+                                {% endif %}
                                 {% endfor %}
                                 {% if lead.lead_type == "public" %}
                                 <td>Public</td>
