@@ -8,37 +8,37 @@
     <div class="col-md-8 col-lg-8 col-sm-12">
         <h2><i class="bi bi-card-checklist"></i> <u>Resources Dashboard</u></h2>
         <div id="searchbar">
-            <form action="" class="row  mt-5">
+            <form action="{% url 'dashboard' %}" method="POST" class="row mt-5">
+                {% csrf_token %}
                 <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                    <select class="form-select" aria-label="set-state">
-                        <option selected>Select State</option>
-                        <option value="Delhi">Delhi</option>
-                        <option value="Maharashtra">Maharashtra</option>
-                        <option value="Tamil Nadu">Tamil Nadu</option>
+                    <select class="form-select" aria-label="set-state" name="selectedState" id="stateSelect">
+                        <option value="all" selected>Select State</option>
+                        {% for state in states %}
+                        <option value="{{state}}">{{state}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                    <select class="form-select" aria-label="set-region">
-                        <option selected>Select Region</option>
-                        <option value="Delhi-NCR">Delhi-NCR</option>
-                        <option value="Mumbai">Mumbai</option>
-                        <option value="Chennai">Chennai</option>
+                    <select class="form-select" aria-label="set-region" name="selectedRegion" id="regionSelect">
+                        <!-- <option value="all" selected>Select Region</option> -->
+                        {% for location in locations %}
+                        <option class="{{location.state}}" value="{{location.region}}">{{location.region}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                    <select class="form-select" aria-label="select-category">
-                        <option selected>Select Category</option>
-                        <option value="Beds">Beds</option>
-                        <option value="Medicine">Medicine</option>
-                        <option value="Oxygen">Oxygen</option>
+                    <select class="form-select" aria-label="select-category" name="selectCategory">
+                        {% for category in categories %}
+                        <option value="{{category}}">{{category}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="dropdown col-md-2 col-lg-2 col-sm-12">
-                    <select class="form-select" aria-label="select-category">
-                        <option selected>Select Type</option>
-                        <option value="Private">Private</option>
-                        <option value="Public (Govt.)">Public (Govt.)</option>
-                        <option value="NGO/Community-run">NGO/Community-run</option>
+                    <select class="form-select" aria-label="select-category" name="selectLeadType">
+                        <option value="all" selected>Select Type</option>
+                        {% for lead_type in lead_types %}
+                        <option value="{{lead_type.type}}">{{lead_type.type}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="col-md-3 col-lg-3"></div>
@@ -54,84 +54,31 @@
                     <tr>
                         <th>Name/Org.</th>
                         <th>Location</th>
-                        <th>Regular Beds</th>
-                        <th>Beds with Oxygen</th>
-                        <th>ICU Beds</th>
-                        <th>Total Beds (Vacancy)</th>
+                        {% for sub_category in sub_categories %}
+                        <th>{{ sub_category }}</th>
+                        {% endfor %}
                         <th>Lead Type</th>
                         <th>Comments</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% if leads %}
+                    {% for lead in leads %}
                     <tr>
                         <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{lead.lead_name}}</a>
                         </td>
-                        <td>Mumbai <b>(Maharashtra)</b></td>
-                        <td>5</td>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>120 (Vacancy: 8)</td>
-                        <td>Public</td>
-                        <td>Can arrange for more Ocy beds in a week</td>
+                        <td>{{lead.location.region}} <b>({{lead.location.state}})</b></td>
+                        {% for availability in availabilies %}
+                        {% if availability.lead == lead %}
+                        <td>{{availability.available_count}}</td>
+                        {% endif %}
+                        {% endfor %}
+                        <td>{{lead.lead_type.type}}</td>
+                        <td>{{ lead.comments }}</td>
                     </tr>
-                    <tr>
-                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
-                        </td>
-                        <td>Delhi-NCR <b>(Delhi)</b></td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>3</td>
-                        <td>120 (Vacancy: 8)</td>
-                        <td>Public</td>
-                        <td>Running low on Oxygen</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
-                        </td>
-                        <td>Mumbai <b>(Maharashtra)</b></td>
-                        <td>5</td>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>120 (Vacancy: 8)</td>
-                        <td>NGO</td>
-                        <td>Can arrange for more Ocy beds in a week</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
-                        </td>
-                        <td>Delhi-NCR <b>(Delhi)</b></td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>3</td>
-                        <td>120 (Vacancy: 8)</td>
-                        <td>Private</td>
-                        <td>Running low on Oxygen</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This Hospital</a>
-                        </td>
-                        <td>Chennai <b>(Tamil Nadu)</b></td>
-                        <td>5</td>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>120 (Vacancy: 8)</td>
-                        <td>Private</td>
-                        <td>Can arrange for more Ocy beds in a week</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That Hospital</a>
-                        </td>
-                        <td>Chennai <b>(Tamil Nadu)</b></td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>3</td>
-                        <td>120 (Vacancy: 8)</td>
-                        <td>Public</td>
-                        <td>Running low on Oxygen</td>
-                    </tr>
+                    {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>
