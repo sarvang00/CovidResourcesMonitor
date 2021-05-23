@@ -220,32 +220,19 @@ def addLeads(request):
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
 def modifyLeads(request):
-    # Filtering locations and states lists
-    locations = Location.objects.all()
-    states = list()
-    
-    for location in locations:
-        states.append(location.state)
-    
-    states = list(set(states))
+    if request.method == "POST":
+        
+        return redirect('modifyleads')
+    else:
+        leads = Lead.objects.all()
+        availabilities = Availability.objects.all()
+        
+        context= {
+            'leads': leads,
+            'availabilities': availabilities
+        }
 
-    # Filtering resources and category
-    resources = Resource.objects.all()
-    categories = list()
-
-    for resource in resources:
-        categories.append(resource.category)
-    
-    categories = list(set(categories))
-
-    context= {
-        'states': states,
-        'locations' : locations,
-        'categories': categories,
-        'resources': resources
-    }
-
-    return render(request, 'teams/team-modify.html', context=context)
+        return render(request, 'teams/team-modify.html', context=context)
 
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')

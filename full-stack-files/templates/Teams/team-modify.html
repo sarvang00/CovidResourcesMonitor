@@ -39,103 +39,31 @@
                                     <tr>
                                         <th>Name/Org.</th>
                                         <th>Location</th>
-                                    
                                         <th>Lead Type</th>
                                         <th>Comments</th>
                                         <th>Modify?</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% if leads %}
+                                    {% for lead in leads %}
                                     <tr>
                                         <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This
-                                                Hospital</a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{lead.lead_name}}</a>
                                         </td>
-                                        <td>Mumbai <b>(Maharashtra)</b></td>
-                                       
-                                        <td>Public</td>
-                                        <td>Can arrange for more Ocy beds in a week</td>
+                                        <td>{{lead.location.region}} <b>({{lead.location.state}})</b></td>
+                                        <td>{{lead.lead_type.type}}</td>
+                                        <td>{{ lead.comments }}</td>
                                         <td>
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
+                                                data-bs-target="#staticBackdrop_{{lead.id}}">
                                                 Modify
                                             </button>
+                                            {% include 'partials/_modal-update.html' %}
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That
-                                                Hospital</a></td>
-                                        <td>Delhi-NCR <b>(Delhi)</b></td>
-                                      
-                                        <td>Public</td>
-                                        <td>Running low on Oxygen</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
-                                                Modify
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This
-                                                Hospital</a>
-                                        </td>
-                                        <td>Mumbai <b>(Maharashtra)</b></td>
-                                       
-                                        <td>NGO</td>
-                                        <td>Can arrange for more Ocy beds in a week</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
-                                                Modify
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That
-                                                Hospital</a></td>
-                                        <td>Delhi-NCR <b>(Delhi)</b></td>
-                                       
-                                        <td>Private</td>
-                                        <td>Running low on Oxygen</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
-                                                Modify
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This
-                                                Hospital</a>
-                                        </td>
-                                        <td>Chennai <b>(Tamil Nadu)</b></td>
-                                       
-                                        <td>Private</td>
-                                        <td>Can arrange for more Ocy beds in a week</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
-                                                Modify
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That
-                                                Hospital</a></td>
-                                        <td>Chennai <b>(Tamil Nadu)</b></td>
-                                       
-                                        <td>Public</td>
-                                        <td>Running low on Oxygen</td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
-                                                Modify
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
+                                    {% endif %}
                                 </tbody>
                             </table>
                         </div>
@@ -150,6 +78,7 @@
             <div class="col-md-2 col-lg-2"></div>
         </div>
     </div>
+
 {% endif %}
 {% endblock %}
    
