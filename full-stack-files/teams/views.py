@@ -215,7 +215,7 @@ def addLeads(request):
         'resources': resources
     }
 
-    return render(request, 'teams/team-add-modify.html', context=context)
+    return render(request, 'teams/team-add.html', context=context)
 
 @login_required(login_url='/login/')
 def addVerifiedLead(request):
