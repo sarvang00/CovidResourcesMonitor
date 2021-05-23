@@ -2,9 +2,9 @@ $(document).ready(function () {
     $('#dashboard-table').DataTable();
     $('#dashboard-table2').DataTable();
 
-
-    var $select1 = $( '#inputGroupSelect01' ),
-    $select2 = $( '#inputGroupSelect02' ),
+    // To select proper region from the respective state
+    var $select1 = $( '#stateSelect' ),
+    $select2 = $( '#regionSelect' ),
     $options = $select2.find( 'option' );
 
     $select1.on( 'change', function() {
