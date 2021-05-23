@@ -9,7 +9,7 @@ class ProposedLead(models.Model):
     full_address = models.TextField(blank=True, null=True)
     gmaps_url = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    lead_type = models.ForeignKey(LeadType, on_delete=models.DO_NOTHING, related_name='leadtype')
+    lead_type = models.ForeignKey(LeadType, on_delete=models.DO_NOTHING, related_name='proposed_leadtype')
     source = models.BooleanField()
     comments = models.TextField(blank=True, null=True)
     last_updated = models.DateTimeField(default=datetime.now)
