@@ -10,7 +10,8 @@
             <div class="col-md-8 col-lg-8 col-sm-12">
                 <h2><i class="bi bi-card-checklist"></i> <u>Resources Dashboard</u></h2>
                 <div id="searchbar">
-                    <form action="{% url 'teamdashboard' %}" method="POST" class="row  mt-5">
+                    <form action="{% url 'teamdashboard' %}" method="POST" class="row mt-5">
+                        {% csrf_token %}
                         <div class="dropdown col-md-2 col-lg-2 col-sm-12">
                             <select class="form-select" aria-label="set-state" name="selectedState" id="stateSelect">
                                 <option value="all" selected>Select State</option>
