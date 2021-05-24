@@ -48,96 +48,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% if pr_leads %}
+                                    {% for pr_lead in pr_leads %}
                                     <tr>
                                         <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This
-                                                Hospital</a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{pr_lead.lead_name}}</a>
                                         </td>
-                                        <td>Mumbai <b>(Maharashtra)</b></td>
-                                       
-                                        <td>Public</td>
-                                        <td>Can arrange for more Ocy beds in a week</td>
+                                        <td>{{pr_lead.location.region}} <b>({{pr_lead.location.state}})</b></td>
+                                        <td>{{pr_lead.lead_type.type}}</td>
+                                        <td>{{pr_lead.comments }}</td>
                                         <td>
                                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                data-bs-target="#approveModel">
+                                                data-bs-target="#approveModel_{{pr_lead.id}}">
                                                 Approve
                                             </button>
+                                            {% include 'partials/_modal-verify.html' %}
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That
-                                                Hospital</a></td>
-                                        <td>Delhi-NCR <b>(Delhi)</b></td>
-                                       
-                                        <td>Public</td>
-                                        <td>Running low on Oxygen</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                data-bs-target="#approveModel">
-                                                Approve
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This
-                                                Hospital</a>
-                                        </td>
-                                        <td>Mumbai <b>(Maharashtra)</b></td>
-                                       
-                                        <td>NGO</td>
-                                        <td>Can arrange for more Ocy beds in a week</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                data-bs-target="#approveModel">
-                                                Approve
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That
-                                                Hospital</a></td>
-                                        <td>Delhi-NCR <b>(Delhi)</b></td>
-                                      
-                                        <td>Private</td>
-                                        <td>Running low on Oxygen</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                data-bs-target="#approveModel">
-                                                Approve
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">This
-                                                Hospital</a>
-                                        </td>
-                                        <td>Chennai <b>(Tamil Nadu)</b></td>
-                                     
-                                        <td>Private</td>
-                                        <td>Can arrange for more Ocy beds in a week</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                data-bs-target="#approveModel">
-                                                Approve
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">That
-                                                Hospital</a></td>
-                                        <td>Chennai <b>(Tamil Nadu)</b></td>
-                                        
-                                        <td>Public</td>
-                                        <td>Running low on Oxygen</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                data-bs-target="#approveModel">
-                                                Approve
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
+                                    {% endif %}
+                                   
                                 </tbody>
                             </table>
                         </div>
