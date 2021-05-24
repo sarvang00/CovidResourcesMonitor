@@ -278,7 +278,53 @@ def modifyLeads(request):
 @login_required(login_url='/login/')
 def verifyLeads(request):
     if request.method == "POST":
-        return
+        lead_name = request.POST['lead_name']
+        contact_num = request.POST['contact_num']
+        selectedState = request.POST['selectedState']
+        selectedRegion = request.POST['selectedRegion']
+        full_address = request.POST['full_address']
+        gmaps_url = request.POST['gmaps_url']
+        lead_email = request.POST['lead_email']
+        lead_type = request.POST['lead_type']
+        lead_comments = request.POST['lead_comments']
+
+        lead_type = LeadType.objects.filter(type=lead_type).all()[0]
+
+        proposed_lead_to_edit = request.POST['lead_to_edit']
+
+        resources = Resource.objects.all()
+        resources_count = dict()
+        for resource in resources:
+            resource_id = str(resource.id)
+            resources_count[resource_id] = request.POST[resource_id]
+
+        proposed_lead_to_edit = ProposedLead.objects.filter(id=proposed_lead_to_edit).all()[0]
+
+        action_to_take = request.POST['approveordelete']
+        
+        if action_to_take=='approved':
+            # save to db
+            selected_location = Location.objects.filter(state=selectedState, region=selectedRegion).all()[0]
+            lead_to_save = Lead(lead_name=lead_name, contact_num=contact_num, location=selected_location, full_address=full_address, gmaps_url=gmaps_url, email=lead_email, lead_type=lead_type, source=False, verified_by=request.user, comments=lead_comments, last_updated=datetime.now())
+            lead_to_save.save()
+
+            new_lead_made = Lead.objects.filter(lead_name=lead_name, contact_num=contact_num, location=selected_location, full_address=full_address, gmaps_url=gmaps_url, email=lead_email, lead_type=lead_type, source=False).all()[0]
+
+            for resource_id, entry in resources_count.items():
+                pr_availability = ProposedAvailability.objects.filter(lead=proposed_lead_to_edit, proposed_resource_type__id=resource_id).all()[0]
+                new_resource = Resource.objects.filter(id=resource_id).all()[0]
+                new_availability = Availability(lead=new_lead_made, resource_type=new_resource, available_count=entry)
+                new_availability.save()
+                pr_availability.delete()
+            
+            proposed_lead_to_edit.delete()
+        else:
+            for resource_id, entry in resources_count.items():
+                pr_availability = ProposedAvailability.objects.filter(lead=proposed_lead_to_edit, proposed_resource_type__id=resource_id).all()[0]
+                pr_availability.delete()
+            proposed_lead_to_edit.delete()
+
+        return redirect('verifyleads')
     else:
         resources = Resource.objects.all()
         proposed_leads = ProposedLead.objects.all()
