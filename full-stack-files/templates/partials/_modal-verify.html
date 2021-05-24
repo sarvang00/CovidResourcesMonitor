@@ -128,13 +128,30 @@
                                         aria-label="Username" aria-describedby="basic-addon1" name="{{pr_availability.proposed_resource_type.id}}" value="{{pr_availability.available_count}}">
                                 </div>
                             </div>
-                            
+
                             {% endif %}
                             {% endfor %}
                             {% else %}
                             <p>No availability</p>
                             {% endif %} 
     
+                            <hr>
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="approved" id="approved">
+                                    <label class="form-check-label" for="approved">
+                                        Approved
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="unapproved" id="unapproved" checked>
+                                    <label class="form-check-label" for="unapproved">
+                                        Unapproved
+                                    </label>
+                                  </div>
+                            </div>
+                            
+
                             <hr>
                             <p> <em>Adding data here will Add data everywhere.</em> </p>
                         </div>
