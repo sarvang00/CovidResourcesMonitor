@@ -1,0 +1,56 @@
+<!-- Modal-1: Data info -->
+<div class="modal fade" id="exampleModal_{{lead.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lead Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Lead Name</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        {{lead.lead_name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Contact Number</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        {{lead.contact_num}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Email</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        {{lead.email}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Address</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        {{lead.full_address}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <b>Google Map link</b>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        {{lead.gmaps_url}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
