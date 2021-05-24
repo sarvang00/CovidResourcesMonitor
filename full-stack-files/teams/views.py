@@ -1,3 +1,4 @@
+from guests.models import ProposedAvailability, ProposedLead
 from django.shortcuts import redirect, render
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
@@ -276,7 +277,20 @@ def modifyLeads(request):
 @cache_control(no_cache=True, must_revalidate=True)
 @login_required(login_url='/login/')
 def verifyLeads(request):
-    return render(request, 'teams/team-verify.html')
+    if request.method == "POST":
+        return
+    else:
+        resources = Resource.objects.all()
+        proposed_leads = ProposedLead.objects.all()
+        proposed_availabilities = ProposedAvailability.objects.all()
+
+        context = {
+            'pr_leads' : proposed_leads,
+            'pr_availabilities' : proposed_availabilities,
+            'resources': resources
+        }
+
+        return render(request, 'teams/team-verify.html', context=context)
 
 
 @login_required(login_url='/login/')

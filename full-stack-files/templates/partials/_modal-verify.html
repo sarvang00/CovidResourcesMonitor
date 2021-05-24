@@ -8,7 +8,7 @@
             <!-- approve lead details -->
             <div class="container-fluid">
 
-                <form action="{% url '' %}" method="POST">
+                <form action="{% url 'verifyleads' %}" method="POST">
                     {% csrf_token %}
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Approving Lead Details</h5>
@@ -22,7 +22,6 @@
                         <div class="input-group ">
                             <p class="p-1">Name: </p>
                             <span class="rounded p-1">{{pr_lead.lead_name}}</span>
-
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-12">
@@ -35,7 +34,7 @@
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="input-group ">
                             <p class="font-weight-bold p-1">State:</p>
-                            <span class="rounded p-1">{{pr_lead.location.state}}</span>
+                            <span class="rounded p-1">{{pr_lead.proposed_location.state}}</span>
 
                         </div>
 
@@ -44,7 +43,7 @@
                     <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="input-group ">
                             <p class="font-weight-bold p-1">Region:</p>
-                            <span class="rounded p-1">{{pr_lead.location.region}}</span>
+                            <span class="rounded p-1">{{pr_lead.proposed_location.region}}</span>
 
                         </div>
 
@@ -65,8 +64,8 @@
                         <div class="input-group ">
                             <p class="font-weight-bold p-1">On Google Maps:</p>
                             <a href="{{pr_lead.gmaps_url}}"
-                                class="overflow-hidden p-1">click Here to Open</a>
-
+                                class="overflow-hidden p-1" target="_blank">click Here to Open
+                            </a>
                         </div>
 
                     </div>
@@ -81,22 +80,15 @@
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="input-group ">
                             <p class="font-weight-bold p-1">Type of Lead:</p>
-                            <span class="rounded p-1 text-secondary" 
                             {% if pr_lead.lead_type.type == "Public" %}
-                            checked
+                            <span class="rounded p-1 text-secondary">Public (Government)</span>
+                            {% elif pr_lead.lead_type.type == "Private" %}
+                            <span class="rounded p-1 text-info">Private (For Profit)</span>
+                            {% elif pr_lead.lead_type.type == "Community" %}
+                            <span class="rounded p-1 text-dark">NGO / Others (Non-Profit)</span>
+                            {% else %}
+                            <span class="rounded p-1 text-white">Unknown category</span>
                             {% endif %}
-                            >Public (Government)</span>
-                            <span class="rounded p-1 text-info"
-                            {% if pr_lead.lead_type.type == "Private" %}
-                            checked
-                            {% endif %}
-                            >Private (For Profit)</span>
-                            <span class="rounded p-1 text-dark" 
-                            {% if pr_lead.lead_type.type == "Community" %}
-                            checked
-                            {% endif %}
-                            >NGO / Others (Non-Profit)</span>
-
                         </div>
                     </div>
 
@@ -116,8 +108,8 @@
 
                     <!-- approve resources -->
                     {% if pr_availabilities %}
-                    {% for pr_availability in pre_availabilities %}
-                    {% if pr_availability.lead.id == pre_lead.id %}
+                    {% for pr_availability in pr_availabilities %}
+                    {% if pr_availability.lead.id == pr_lead.id %}
 
                     <div class="col-md-4 col-lg-3 col-sm-12">
                         <div class="input-group">
