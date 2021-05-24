@@ -4,6 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form action="{% url 'modifyleads' %}" method="POST">
+                {% csrf_token %}
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Updating Lead Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -13,6 +14,7 @@
                         <!-- Lead Contact Info Section -->
                         <h5>Contact Details Section</h5>
                         <hr>
+                        <input type="hidden" name="lead_to_edit" value="{{lead.id}}">
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Name</span>
@@ -103,8 +105,7 @@
                                 <br>
                                 <div class="input-group">
                                     <span class="input-group-text">Comments</span>
-                                    <textarea required class="form-control" aria-label="Comments"
-                                        placeholder="Any additional comments">{{lead.comments}}</textarea>
+                                    <textarea required class="form-control" aria-label="Comments" placeholder="Any additional comments" name="lead_comments">{{lead.comments}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +135,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger">Understood, update</button>
+                    <button type="submit" class="btn btn-danger">Understood, update</button>
                 </div>
             </form>
         </div>

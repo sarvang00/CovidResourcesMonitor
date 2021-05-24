@@ -221,7 +221,46 @@ def addLeads(request):
 @login_required(login_url='/login/')
 def modifyLeads(request):
     if request.method == "POST":
-        
+        lead_name = request.POST['lead_name']
+        contact_num = request.POST['contact_num']
+        selectedState = request.POST['selectedState']
+        selectedRegion = request.POST['selectedRegion']
+        full_address = request.POST['full_address']
+        gmaps_url = request.POST['gmaps_url']
+        lead_email = request.POST['lead_email']
+        lead_type = request.POST['lead_type']
+        lead_comments = request.POST['lead_comments']
+
+        lead_type = LeadType.objects.filter(type=lead_type).all()[0]
+
+        lead_to_edit = request.POST['lead_to_edit']
+
+        resources = Resource.objects.all()
+        resources_count = dict()
+        for resource in resources:
+            resource_id = str(resource.id)
+            resources_count[resource_id] = request.POST[resource_id]
+
+        lead_to_edit = Lead.objects.filter(id=lead_to_edit).all()[0]
+
+        lead_to_edit.lead_name = lead_name
+        lead_to_edit.contact_num = contact_num
+        lead_to_edit.full_address = full_address
+        lead_to_edit.gmaps_url = gmaps_url
+        lead_to_edit.email = lead_email
+        lead_to_edit.lead_type = lead_type
+        lead_to_edit.comments = lead_comments
+        lead_to_edit.last_updated = datetime.now()
+
+        lead_to_edit.save()
+
+        for resource_id, entry in resources_count.items():
+            availability = Availability.objects.filter(lead=lead_to_edit, resource_type__id=resource_id).all()[0]
+            availability.available_count = entry
+            availability.save()
+
+        messages.success(request, "Data updated!")
+
         return redirect('modifyleads')
     else:
         leads = Lead.objects.all()
