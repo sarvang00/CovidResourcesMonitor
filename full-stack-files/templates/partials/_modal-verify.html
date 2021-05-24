@@ -82,7 +82,7 @@
                                         {% if pr_lead.lead_type.type == "Public" %}
                                         checked
                                         {% endif %}
-                                    >
+                                    disabled >
                                     <label class="btn btn-outline-secondary" for="secondary-outlined">Public
                                         (Government)</label>
                                 </div>
@@ -92,7 +92,7 @@
                                         {% if pr_lead.lead_type.type == "Private" %}
                                         checked
                                         {% endif %}
-                                    >
+                                    disabled >
                                     <label class="btn btn-outline-info" for="info-outlined">Private (For
                                         Profit)</label>
                                 </div>
@@ -102,7 +102,7 @@
                                         {% if pr_lead.lead_type.type == "Community" %}
                                         checked 
                                         {% endif %}
-                                    >
+                                     disabled>
                                     <label class="btn btn-outline-dark" for="dark-outlined">NGO / Others
                                         (Non-Profit)</label>
                                 </div>
@@ -123,9 +123,9 @@
                             {% if pr_availability.lead.id == pr_lead.id %}
                             <div class="col-md-6 col-lg-4 col-sm-12">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">{{pr_availability.resource_type.sub_category}} Count</span>
+                                    <span class="input-group-text" id="basic-addon1">{{pr_availability.proposed_resource_type.sub_category}}</span>
                                     <input type="number" min="0" disabled class="form-control" placeholder="#"
-                                        aria-label="Username" aria-describedby="basic-addon1" name="{{pr_availability.resource_type.id}}" value="{{pr_availability.available_count}}">
+                                        aria-label="Username" aria-describedby="basic-addon1" name="{{pr_availability.proposed_resource_type.id}}" value="{{pr_availability.available_count}}">
                                 </div>
                             </div>
                             
