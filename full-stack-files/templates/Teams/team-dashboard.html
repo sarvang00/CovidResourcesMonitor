@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <!-- Content Box -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-2 col-lg-2">
+                <!-- Division for sidebar -->
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-12">
+                <h2><i class="bi bi-card-checklist"></i> <u>Resources Dashboard</u></h2>
+                <div id="searchbar">
+                    <form action="{% url 'teamdashboard' %}" method="POST" class="row mt-5">
+                        {% csrf_token %}
+                        <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                            <select class="form-select" aria-label="set-state" name="selectedState" id="stateSelect">
+                                <option value="all" selected>Select State</option>
+                                {% for state in states %}
+                                <option value="{{state}}">{{state}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                            <select class="form-select" aria-label="set-region" name="selectedRegion" id="regionSelect">
+                                <!-- <option value="all" selected>Select Region</option> -->
+                                {% for location in locations %}
+                                <option class="{{location.state}}" value="{{location.region}}">{{location.region}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                            <select class="form-select" aria-label="select-category" name="selectCategory">
+                                {% for category in categories %}
+                                <option value="{{category}}">{{category}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="dropdown col-md-2 col-lg-2 col-sm-12">
+                            <select class="form-select" aria-label="select-category" name="selectLeadType">
+                                <option value="all" selected>Select Type</option>
+                                {% for lead_type in lead_types %}
+                                <option value="{{lead_type.type}}">{{lead_type.type}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-lg-3"></div>
+                        <div class="col-md-1 col-lg-1 col-sm-12 align-right">
+                            <button class="btn btn-outline-success">Search</button>
+                        </div>
+                    </form>
+                </div>
+                <hr class="content-divider">
+                <div id="dashboard" class="mt-4">
+                    <table id="dashboard-table" class="display border rounded">
+                        <thead>
+                            <tr>
+                                <th>Name/Org.</th>
+                                <th>Location</th>
+                                {% for sub_category in sub_categories %}
+                                <th>{{ sub_category }}</th>
+                                {% endfor %}
+                                <th>Lead Type</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if leads %}
+                            {% for lead in leads %}
+                            <tr>
+                                <td>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal_{{lead.id}}">{{lead.lead_name}}</a>
+                                    {% include 'partials/_modal-lead.html' %}
+                                </td>
+                                <td>{{lead.location.region}} <b>({{lead.location.state}})</b></td>
+                                {% for availability in availabilies %}
+                                {% if availability.lead == lead %}
+                                <td>{{availability.available_count}}</td>
+                                {% endif %}
+                                {% endfor %}
+                                <td>{{lead.lead_type.type}}</td>
+                                <td>{{ lead.comments }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
+   

@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <!-- Content Box -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-2 col-lg-2">
+                <!-- Division for sidebar -->
+                <div class="d-flex align-items-start sidebar-content">
+                    <div class="nav flex-column nav-pills h5" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <a class="nav-link active mt-3"  type="button" href="{% url 'addleads' %}">
+                            <i class="bi bi-plus-circle"></i> Add Leads
+                        </a>
+                        <a class="nav-link mt-3"  type="button" href="{% url 'modifyleads' %}">
+                            <i class="bi bi-gear"></i> Modify leads
+                        </a>
+                        <a class="nav-link  mt-3"  type="button" href="{% url 'verifyleads' %}" >
+                            <i class="fa fa-check" aria-hidden="true"></i> Verify leads
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8 col-lg-8 col-sm-12">
+                <!-- Content Division -->
+                <div class="tab-content mb-5" id="v-pills-tabContent">
+                    <div class="tab-pane show active" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <!-- Add lead details -->
+                        <h2><i class="bi bi-plus-circle"></i> <u>Add Leads</u> </h2>
+                        <div class="container-fluid">
+                            <form action="{% url 'addverifiedlead' %}" method="POST" class="add-lead-form row">
+                                {% csrf_token %}
+                                <!-- Lead Contact Info Section -->
+                                <h5>Contact Details Section</h5>
+                                <hr>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Name</span>
+                                        <input type="text" class="form-control" placeholder="Name/Org. of Lead"
+                                            aria-label="Lead Source" aria-describedby="basic-addon1" name="lead_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Contact No.</span>
+                                        <input type="text" class="form-control" placeholder="+91xxxxxxxxxx"
+                                            aria-label="Number" aria-describedby="basic-addon1" name="contact_num" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="stateSelect">Select State</label>
+                                        <select class="form-select" name="selectedState" id="stateSelect" required>
+                                            {% for state in states %}
+                                            <option value="{{state}}">{{state}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="regionSelect">Select Region</label>
+                                        <select class="form-select" name="selectedRegion" id="regionSelect" required>
+                                            {% for location in locations %}
+                                            <option class="{{location.state}}" value="{{location.region}}">{{location.region}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Full Address</span>
+                                        <textarea class="form-control" name="full_address" aria-label="Full Address" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="bi bi-geo-alt"></i></span>
+                                        <input type="text" required name="gmaps_url" class="form-control" placeholder="Google Maps URL"
+                                            aria-label="Lead Source" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                        <input type="email" required class="form-control" placeholder="Email ID"
+                                            aria-label="Lead Source" aria-describedby="basic-addon1" name="lead_email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 row">
+                                    <b class="col-md-2 col-sm-12 col-lg-2">Type of Lead: </b>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="lead_type"
+                                            id="secondary-outlined" autocomplete="off" value="Public" checked>
+                                        <label class="btn btn-outline-secondary" for="secondary-outlined">Public
+                                            (Government)</label>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="lead_type" id="info-outlined"
+                                            autocomplete="off" value="Private">
+                                        <label class="btn btn-outline-info" for="info-outlined">Private (For
+                                            Profit)</label>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                        <input type="radio" class="btn-check" name="lead_type" id="dark-outlined"
+                                            autocomplete="off" value="Community">
+                                        <label class="btn btn-outline-dark" for="dark-outlined">NGO / Others
+                                            (Non-Profit)</label>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <br>
+                                        <div class="input-group">
+                                            <span class="input-group-text">Comments</span>
+                                            <textarea required class="form-control" aria-label="Comments" placeholder="Any additional comments" name="lead_comments"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3"></div>
+                                <hr>
+        
+                                <!-- Adding resources -->
+                                {% for category in categories %}
+                                <h5>Category- {{category}}</h5>
+                                <hr>
+        
+                                {% for resource in resources %}
+        
+                                {% if resource.category == category %}
+                                <div class="col-md-6 col-lg-4 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">{{resource.sub_category}} Count</span>
+                                        <input type="number" min="0" class="form-control" placeholder="#"
+                                            aria-label="Username" aria-describedby="basic-addon1" name="{{resource.id}}">
+                                    </div>
+                                </div>
+                                {% endif %}
+        
+                                {% endfor %}
+                                <hr>
+                                {% endfor %}
+        
+                                <div class="col-sm-12 col-md-4 col-lg-4"></div>
+                                <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <a href="#"><button type="submit" class="btn-submit"><i class="bi bi-node-plus"></i>
+                                            Contribute Lead Data</button></a>
+                                </div>
+                                <div class="col-sm-12 col-md-4 col-lg-4"></div>
+        
+                            </form>
+                        </div>
+                    </div>
+
+                   
+
+                  
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
+   

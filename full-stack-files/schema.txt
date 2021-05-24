@@ -1,0 +1,41 @@
+Location:
+State - STRING
+Region - STRING
+
+Resources:
+Category - STRING
+Sub Category - STRING
+
+Lead:
+Name(source) - STRING
+Contact Number - STRING
+Location - LOCATION(Foreign Key)
+Full Address - STRING(TEXT)
+GMaps URL - STRING
+Email Id - STRING(EMAIL)
+Type - STRING
+Source - BOOL (False-verified but suggested by Guest; True-verified by us)
+Comments - STRING
+Last Updated - DATETIME
+
+Availability:
+Lead - LEAD (FK)
+Resource - Resources (FK)
+Count - INT
+
+Proposed Lead:
+Name(source) - STRING
+Contact Number - STRING
+Location - LOCATION(Foreign Key)
+Full Address - STRING(TEXT)
+GMaps URL - STRING
+Email Id - STRING(EMAIL)
+Type - STRING
+Source - BOOL
+Comments - STRING
+Last Updated - DATETIME
+
+Proposed Availability:
+Lead - PROPOSED LEAD (FK)
+Resource - Resources (FK)
+Count - INT

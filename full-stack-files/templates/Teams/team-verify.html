@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <!-- Content Box -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-2 col-lg-2">
+                <!-- Division for sidebar -->
+                <div class="d-flex align-items-start sidebar-content">
+                    <div class="nav flex-column nav-pills h5" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <a class="nav-link mt-3"  type="button" href="{% url 'addleads' %}">
+                            <i class="bi bi-plus-circle"></i> Add Leads
+                        </a>
+                        <a class="nav-link mt-3"  type="button" href="{% url 'modifyleads' %}">
+                            <i class="bi bi-gear"></i> Modify leads
+                        </a>
+                        <a class="nav-link active mt-3"  type="button" href="{% url 'verifyleads' %}" >
+                            <i class="fa fa-check" aria-hidden="true"></i> Verify leads
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8 col-lg-8 col-sm-12">
+                <!-- Content Division -->
+
+                <div class="tab-content mb-5" id="v-pills-tabContent">
+
+
+                    <!-- verify pill -->
+
+                    <div class="tab-pane show active" id="v-pills-verify" role="tabpanel"
+                        aria-labelledby="v-pills-verify-tab">
+
+                        <h2> <i class="fa fa-check" aria-hidden="true"></i> <u>Verify Leads</u> </h2>
+
+                        <div id="dashboard" class="mt-4">
+                            <table id="dashboard-table2" class="display border rounded">
+                                <thead>
+                                    <tr>
+                                        <th>Name/Org.</th>
+                                        <th>Location</th>
+                                        <th>Lead Type</th>
+                                        <th>Comments</th>
+                                        <th>Approve?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if pr_leads %}
+                                    {% for pr_lead in pr_leads %}
+                                    <tr>
+                                        <td>{{pr_lead.lead_name}}</td>
+                                        <td>{{pr_lead.proposed_location.region}} <b>({{pr_lead.proposed_location.state}})</b></td>
+                                        <td>{{pr_lead.lead_type.type}}</td>
+                                        <td>{{pr_lead.comments }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                data-bs-target="#approveModel_{{pr_lead.id}}">
+                                                Verify
+                                            </button>
+                                            {% include 'partials/_modal-verify.html' %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endif %}
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- verify pill over -->
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
+   

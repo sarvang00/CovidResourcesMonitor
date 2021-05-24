@@ -1,0 +1,29 @@
+@import url("https://use.fontawesome.com/releases/v5.15.3/css/all.css");
+
+#header {
+    height: 50px;
+    background: #00695c;
+    color: #fff;
+}
+
+#branding h1 {
+    color: #fff;
+}
+
+a:link,
+a:visited {
+    color: #f0950d;
+}
+
+div.breadcrumbs {
+    background: #10284e;
+    color: #f0950d;
+}
+
+div.breadcrumbs a {
+    color: #fff;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #10284e;
+}

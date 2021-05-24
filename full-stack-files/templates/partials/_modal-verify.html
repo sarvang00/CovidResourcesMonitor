@@ -1,0 +1,162 @@
+<!-- Modal-3:Approve Lead Data -->
+<div class="modal fade" id="approveModel_{{pr_lead.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- approve lead details -->
+            <div class="container-fluid">
+                <form action="{% url 'verifyleads' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Updating Lead Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Lead Contact Info Section -->
+                            <h5>Contact Details Section</h5>
+                            <hr>
+                            <input type="hidden" name="lead_to_edit" value="{{pr_lead.id}}">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Name</span>
+                                    <input type="text" class="form-control" placeholder="Name/Org. of Lead" 
+                                        aria-label="Lead Source" aria-describedby="basic-addon1" name="lead_name" value="{{pr_lead.lead_name}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Contact No.</span>
+                                    <input type="text" class="form-control" placeholder="+91xxxxxxxxxx" 
+                                        aria-label="Number" aria-describedby="basic-addon1" name="contact_num" value="{{pr_lead.contact_num}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="stateSelect">Select State</label>
+                                    <select class="form-select" name="selectedState" required >
+                                        <option value="{{pr_lead.proposed_location.state}}" selected>{{pr_lead.proposed_location.state}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="regionSelect">Select Region</label>
+                                    <select class="form-select" name="selectedRegion" required>
+                                        <option value="{{pr_lead.proposed_location.region}}" selected>
+                                        {{pr_lead.proposed_location.region}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-text">Full Address</span>
+                                    <textarea class="form-control" name="full_address"  aria-label="Full Address" required>{{pr_lead.full_address}}</textarea>
+                                </div>
+                            </div>
+                            <div class="mt-3"></div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                        class="bi bi-geo-alt"></i></span>
+                                <input type="text" required name="gmaps_url"  class="form-control" placeholder="Google Maps URL"
+                                    aria-label="Lead Source" aria-describedby="basic-addon1" value="{{pr_lead.gmaps_url}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    <input type="email" required  class="form-control" placeholder="Email ID"
+                                        aria-label="Lead Source" aria-describedby="basic-addon1" name="lead_email" value="{{pr_lead.email}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 row">
+                                <b class="col-md-2 col-sm-12 col-lg-2">Type of Lead: </b>
+                                <div class="col-md-3 col-sm-12 col-lg-3">
+                                    <input type="radio" class="btn-check" name="lead_type"
+                                        id="secondary-outlined" autocomplete="off" value="Public" 
+                                        {% if pr_lead.lead_type.type == "Public" %}
+                                        checked
+                                        {% endif %}
+                                     >
+                                    <label class="btn btn-outline-secondary" for="secondary-outlined">Public
+                                        (Government)</label>
+                                </div>
+                                <div class="col-md-3 col-sm-12 col-lg-3">
+                                    <input type="radio" class="btn-check" name="lead_type" id="info-outlined"
+                                        autocomplete="off" value="Private"
+                                        {% if pr_lead.lead_type.type == "Private" %}
+                                        checked
+                                        {% endif %}
+                                     >
+                                    <label class="btn btn-outline-info" for="info-outlined">Private (For
+                                        Profit)</label>
+                                </div>
+                                <div class="col-md-3 col-sm-12 col-lg-3">
+                                    <input type="radio" class="btn-check" name="lead_type" id="dark-outlined"
+                                        autocomplete="off" value="Community"
+                                        {% if pr_lead.lead_type.type == "Community" %}
+                                        checked 
+                                        {% endif %}
+                                     >
+                                    <label class="btn btn-outline-dark" for="dark-outlined">NGO / Others
+                                        (Non-Profit)</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <br>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Comments</span>
+                                        <textarea required class="form-control"  aria-label="Comments" placeholder="Any additional comments" name="lead_comments">{{pr_lead.comments}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3"></div>
+                            <hr>
+    
+                            <!-- Adding resources -->
+                            {% if pr_availabilities %}
+                            {% for pr_availability in pr_availabilities %}
+                            {% if pr_availability.lead.id == pr_lead.id %}
+                            <div class="col-md-6 col-lg-4 col-sm-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">{{pr_availability.proposed_resource_type.sub_category}}</span>
+                                    <input type="number" min="0"  class="form-control" placeholder="#"
+                                        aria-label="Username" aria-describedby="basic-addon1" name="{{pr_availability.proposed_resource_type.id}}" value="{{pr_availability.available_count}}">
+                                </div>
+                            </div>
+
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            <p>No availability</p>
+                            {% endif %} 
+    
+                            <hr>
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="approveordelete" id="approved" value="approved" checked>
+                                    <label class="form-check-label" for="approved">
+                                        Approved
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="approveordelete" id="unapproved" value="delete">
+                                    <label class="form-check-label" for="unapproved">
+                                        Disapproved
+                                    </label>
+                                  </div>
+                            </div>
+                            <hr>
+                            <p> <em>Adding data here will Add data everywhere.</em> </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

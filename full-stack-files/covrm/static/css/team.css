@@ -1,0 +1,27 @@
+hr.content-divider {
+  color: #06c;
+}
+
+.add-lead-form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: solid 2px;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  width: 100%;
+  color: #fff;
+  background-color: rgb(34, 143, 252);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.btn-submit:hover {
+  color: #fff;
+  background-color: #06c;
+}
+
+#basic-addon1{
+  overflow:visible;
+}

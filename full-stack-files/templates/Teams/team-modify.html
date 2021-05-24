@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <!-- Content Box -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-2 col-lg-2">
+                <!-- Division for sidebar -->
+                <div class="d-flex align-items-start sidebar-content">
+                    <div class="nav flex-column nav-pills h5" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <a class="nav-link mt-3"  type="button" href="{% url 'addleads' %}">
+                            <i class="bi bi-plus-circle"></i> Add Leads
+                        </a>
+                        <a class="nav-link active mt-3"  type="button" href="{% url 'modifyleads' %}">
+                            <i class="bi bi-gear"></i> Modify leads
+                        </a>
+                        <a class="nav-link  mt-3"  type="button" href="{% url 'verifyleads' %}" >
+                            <i class="fa fa-check" aria-hidden="true"></i> Verify leads
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8 col-lg-8 col-sm-12">
+                <!-- Content Division -->
+                <div class="tab-content mb-5" id="v-pills-tabContent">
+                    
+
+                    <!-- Modify pill -->
+                    <div class="tab-pane show active" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+
+                        <h2><i class="bi bi-gear"></i> <u>Modify leads</u> </h2>
+
+                        <div id="dashboard" class="mt-4">
+                            <table id="dashboard-table" class="display border rounded">
+                                <thead>
+                                    <tr>
+                                        <th>Name/Org.</th>
+                                        <th>Location</th>
+                                        <th>Lead Type</th>
+                                        <th>Comments</th>
+                                        <th>Modify?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if leads %}
+                                    {% for lead in leads %}
+                                    <tr>
+                                        <td>{{lead.lead_name}}</td>
+                                        <td>{{lead.location.region}} <b>({{lead.location.state}})</b></td>
+                                        <td>{{lead.lead_type.type}}</td>
+                                        <td>{{ lead.comments }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                data-bs-target="#staticBackdrop_{{lead.id}}">
+                                                Modify
+                                            </button>
+                                            {% include 'partials/_modal-update.html' %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Modify pill complete -->
+
+
+                  
+
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+
+{% endif %}
+{% endblock %}
+   

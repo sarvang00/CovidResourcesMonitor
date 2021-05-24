@@ -1,0 +1,106 @@
+<!-- Navbar -->
+<nav id="custom-content-navbar" class="navbar navbar-expand-lg navbar-expand-md navbar-dark container-fluid">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <h4><i class="fab fa-medrt"></i> COVID Resource Monitor</h4>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    {% if 'team' in request.path %}
+                        {% if user.is_superuser %}
+                            <!-- Super User -->
+                        {% else %}
+                            <!-- Team User -->
+                            <li class="nav-item">
+                                <a 
+                                {% if 'team/teamdashboard' in request.path%} 
+                                    class="nav-link active" 
+                                {% else %} 
+                                    class="nav-link"
+                                {% endif %}
+                                aria-current="page" href="{% url 'teamdashboard' %}"
+                                >
+                                    <h5><i class="bi bi-card-checklist"></i> Dashboard</h5>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a 
+                                {% if 'team/addleads' in request.path or 'team/modifyleads' in request.path or 'team/verifyleads' in request.path %} 
+                                    class="nav-link active" 
+                                {% else %} class="nav-link" 
+                                {% endif %}
+                                aria-current="page" href="{% url 'addleads' %}"
+                                >
+                                    <h5><i class="bi bi-node-plus"></i> Add/Modify Leads</h5>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <!-- Not a team user, guest access -->
+                    <li class="nav-item">
+                        <a 
+                            {% if 'dashboard' in request.path %}
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                            aria-current="page" href="{% url 'dashboard' %}"
+                        >
+                            <h5><i class="bi bi-card-checklist"></i> Dashboard</h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                        {% if 'contribute' in request.path %}
+                            class="nav-link active"
+                        {% else %} 
+                            class="nav-link"
+                        {% endif %} 
+                        aria-current="page" href="{% url 'contribute' %}">
+                            <h5><i class="bi bi-node-plus"></i> Contribute Leads</h5>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <!-- Authenticated user -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                            <span>Welcome, {{user.first_name}} {{user.last_name}}</span>
+                        </a>
+                        <ul class="dropdown-menu container" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}"><i
+                                        class="fas fa-sign-out-alt"></i> Log Out</a>
+                                <form action="{% url 'logout' %}" method="post" id="logout">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                <!-- Guest User -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> Guest User or Visitor
+                        </a>
+                        <ul class="dropdown-menu container" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Log In</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
