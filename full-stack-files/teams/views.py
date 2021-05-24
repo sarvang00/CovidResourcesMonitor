@@ -456,6 +456,14 @@ def addCategory(request):
         else:
             resource = Resource(category=category, sub_category=subcategory)
             resource.save()
+
+            
+            added_resource = Resource.objects.filter(category=category, sub_category=subcategory).all()[0]
+            leads = Lead.objects.all()
+            for lead in leads:
+                new_availability = Availability(lead=lead, resource_type=added_resource, available_count=0)
+                new_availability.save()
+
             messages.success(request, 'Added a new category')
             return redirect('admincontrols')
     else:
@@ -479,6 +487,14 @@ def addSubCategory(request):
 
             resource = Resource(category=category, sub_category=subcategory)
             resource.save()
+
+            added_resource = Resource.objects.filter(category=category, sub_category=subcategory).all()[0]
+            leads = Lead.objects.all()
+            for lead in leads:
+                new_availability = Availability(lead=lead, resource_type=added_resource, available_count=0)
+                new_availability.save()
+
+
             messages.success(request, 'Added a new sub-category') 
             return redirect('admincontrols')
         
