@@ -48,9 +48,7 @@
                                     {% if leads %}
                                     {% for lead in leads %}
                                     <tr>
-                                        <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{lead.lead_name}}</a>
-                                        </td>
+                                        <td>{{lead.lead_name}}</td>
                                         <td>{{lead.location.region}} <b>({{lead.location.state}})</b></td>
                                         <td>{{lead.lead_type.type}}</td>
                                         <td>{{ lead.comments }}</td>

@@ -50,9 +50,7 @@
                                     {% if pr_leads %}
                                     {% for pr_lead in pr_leads %}
                                     <tr>
-                                        <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{pr_lead.lead_name}}</a>
-                                        </td>
+                                        <td>{{pr_lead.lead_name}}</td>
                                         <td>{{pr_lead.proposed_location.region}} <b>({{pr_lead.proposed_location.state}})</b></td>
                                         <td>{{pr_lead.lead_type.type}}</td>
                                         <td>{{pr_lead.comments }}</td>
