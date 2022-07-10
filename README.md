@@ -16,6 +16,7 @@
 
 #### Current Stage
 * Completed making frontned templates using vanilla HTML5, CSS3, JS and Bootstrap
+* Made backend using Django
 
-#### Next Stage
-* Make backend using Django
+## Archive Notice
+**I donot see a way to scale this app further and donot plan to develop this application anymore. Henceforth, this repo is now archived..**
